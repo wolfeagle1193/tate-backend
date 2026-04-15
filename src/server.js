@@ -21,18 +21,25 @@ const autoSeed = async () => {
     const User    = require('./models/User');
     const Matiere = require('./models/Matiere');
 
-    // Admin
-    const adminExiste = await User.findOne({ role: 'admin' });
-    if (!adminExiste) {
-      await User.create({
-        nom:          process.env.ADMIN_NOM    || 'Administrateur Taté',
-        email:        process.env.ADMIN_EMAIL  || 'admin@tate.sn',
-        passwordHash: process.env.ADMIN_PASSWORD || 'TateAdmin2024!',
-        role:         'admin',
-        actif:        true,
-        statutCompte: 'actif',
-      });
-      console.log('✅ Compte admin créé automatiquement');
+    // Admins — liste complète
+    const admins = [
+      { nom: 'Administrateur Taté', email: process.env.ADMIN_EMAIL || 'admin@tate.sn',         password: process.env.ADMIN_PASSWORD || 'TateAdmin2024!' },
+      { nom: 'Trista Honorovitch',  email: 'jtrista3honorovitch93@gmail.com',                   password: 'Marie@1993' },
+      { nom: 'Christian Dipfab',    email: 'christian@dipfab.com',                              password: 'Marie@1993' },
+    ];
+    for (const a of admins) {
+      const existe = await User.findOne({ email: a.email.toLowerCase() });
+      if (!existe) {
+        await User.create({
+          nom:          a.nom,
+          email:        a.email.toLowerCase(),
+          passwordHash: a.password,
+          role:         'admin',
+          actif:        true,
+          statutCompte: 'actif',
+        });
+        console.log(`✅ Admin créé : ${a.email}`);
+      }
     }
 
     // Matières de base
