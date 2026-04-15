@@ -1,12 +1,15 @@
 // ============================================================
 // src/routes/auth.routes.js
 // ============================================================
-const express = require('express');
-const jwt     = require('jsonwebtoken');
-const bcrypt  = require('bcryptjs');
-const path    = require('path');
-const User    = require('../models/User');
+const express        = require('express');
+const jwt            = require('jsonwebtoken');
+const bcrypt         = require('bcryptjs');
+const path           = require('path');
+const { OAuth2Client } = require('google-auth-library');
+const User           = require('../models/User');
 const { authJWT, limiterAuth, upload } = require('../middlewares');
+
+const googleClient = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 const router = express.Router();
 
@@ -241,6 +244,74 @@ router.post('/logout', authJWT, async (req, res) => {
   req.user.refreshToken = null;
   await req.user.save();
   ok(res, { message: 'Déconnecté avec succès' });
+});
+
+// ─── POST /api/auth/google ────────────────────────────────
+// Connexion / inscription via Google Identity Services
+router.post('/google', limiterAuth, async (req, res) => {
+  try {
+    const { credential } = req.body;
+    if (!credential) return err(res, 'Token Google manquant');
+
+    if (!process.env.GOOGLE_CLIENT_ID)
+      return err(res, 'Google Auth non configuré sur ce serveur', 503);
+
+    // Vérifier le token Google
+    const ticket = await googleClient.verifyIdToken({
+      idToken:  credential,
+      audience: process.env.GOOGLE_CLIENT_ID,
+    });
+    const payload = ticket.getPayload();
+    const { email, name, sub: googleId, picture } = payload;
+
+    if (!email) return err(res, 'Email Google introuvable');
+
+    // Chercher ou créer l'utilisateur
+    let user = await User.findOne({ $or: [{ googleId }, { email: email.toLowerCase() }] });
+
+    if (!user) {
+      // Inscription automatique comme élève
+      user = await User.create({
+        nom:          name || email.split('@')[0],
+        email:        email.toLowerCase(),
+        passwordHash: googleId + process.env.JWT_SECRET, // mot de passe aléatoire inutilisable
+        role:         'eleve',
+        googleId,
+        avatar:       picture || null,
+        actif:        true,
+        statutCompte: 'actif',
+        abonnement:   'gratuit',
+      });
+    } else {
+      // Mettre à jour le googleId si connexion par email existant
+      if (!user.googleId) { user.googleId = googleId; await user.save(); }
+      if (!user.actif)         return err(res, 'Compte désactivé', 401);
+      if (user.statutCompte === 'en_attente') return err(res, 'Compte en attente de validation', 403);
+    }
+
+    const tokens = genTokens(user._id);
+    user.refreshToken = tokens.refreshToken;
+    user.lastActivity = new Date();
+    await user.save();
+
+    ok(res, {
+      accessToken:  tokens.accessToken,
+      refreshToken: tokens.refreshToken,
+      user: {
+        id:         user._id,
+        nom:        user.nom,
+        email:      user.email,
+        role:       user.role,
+        niveau:     user.niveau,
+        abonnement: user.abonnement,
+        statutCompte: user.statutCompte,
+        isNew:      !user.niveau, // indique qu'il faut choisir le niveau
+      },
+    });
+  } catch (e) {
+    console.error('Google auth error:', e.message);
+    err(res, 'Token Google invalide ou expiré', 401);
+  }
 });
 
 module.exports = router;

@@ -15,7 +15,49 @@ const {
 const resultatsRouter         = require('./routes/resultats.routes');
 const sessionsVirtuellesRouter = require('./routes/sessions-virtuelles.routes');
 
-connectDB();
+// ── Auto-seed : crée admin + matières au premier démarrage ──
+const autoSeed = async () => {
+  try {
+    const User    = require('./models/User');
+    const Matiere = require('./models/Matiere');
+
+    // Admin
+    const adminExiste = await User.findOne({ role: 'admin' });
+    if (!adminExiste) {
+      await User.create({
+        nom:          process.env.ADMIN_NOM    || 'Administrateur Taté',
+        email:        process.env.ADMIN_EMAIL  || 'admin@tate.sn',
+        passwordHash: process.env.ADMIN_PASSWORD || 'TateAdmin2024!',
+        role:         'admin',
+        actif:        true,
+        statutCompte: 'actif',
+      });
+      console.log('✅ Compte admin créé automatiquement');
+    }
+
+    // Matières de base
+    const NIVEAUX = ['CM1','CM2','6eme','5eme','4eme','3eme','Seconde','Premiere','Terminale'];
+    const matieres = [
+      { nom: 'Français',        code: 'FR', niveaux: NIVEAUX, icone: '📖', couleur: '#F4A847', ordre: 1 },
+      { nom: 'Mathématiques',   code: 'MA', niveaux: NIVEAUX, icone: '📐', couleur: '#534AB7', ordre: 2 },
+      { nom: 'Anglais',         code: 'AN', niveaux: NIVEAUX, icone: '🇬🇧', couleur: '#1D9E75', ordre: 3 },
+      { nom: 'Histoire',        code: 'HI', niveaux: NIVEAUX, icone: '🏛️', couleur: '#D85A30', ordre: 4 },
+      { nom: 'Géographie',      code: 'GE', niveaux: NIVEAUX, icone: '🌍', couleur: '#0EA5E9', ordre: 5 },
+      { nom: 'Sciences',        code: 'SC', niveaux: NIVEAUX, icone: '🔬', couleur: '#7C3AED', ordre: 6 },
+      { nom: 'Physique-Chimie', code: 'PC', niveaux: NIVEAUX, icone: '⚗️', couleur: '#0891B2', ordre: 7 },
+      { nom: 'SVT',             code: 'SV', niveaux: NIVEAUX, icone: '🌿', couleur: '#16A34A', ordre: 8 },
+      { nom: 'Philosophie',     code: 'PH', niveaux: ['Premiere','Terminale'], icone: '💭', couleur: '#9333EA', ordre: 9 },
+    ];
+    for (const m of matieres) {
+      await Matiere.findOneAndUpdate({ code: m.code }, m, { upsert: true, new: true });
+    }
+    console.log('✅ Matières initialisées');
+  } catch (e) {
+    console.error('⚠️  Auto-seed erreur:', e.message);
+  }
+};
+
+connectDB().then(autoSeed).catch(() => {});
 
 const app = express();
 

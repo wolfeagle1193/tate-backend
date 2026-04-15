@@ -68,6 +68,8 @@ const userSchema = new mongoose.Schema({
 
   // ── Auth ───────────────────────────────────────────────────
   actif:        { type: Boolean, default: true },
+  googleId:     { type: String, default: null },
+  avatar:       { type: String, default: null },
   refreshToken: { type: String, default: null },
 }, { timestamps: true });
 
