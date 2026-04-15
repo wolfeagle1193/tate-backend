@@ -70,24 +70,32 @@ router.post('/login', limiterAuth, async (req, res) => {
 // ─── POST /api/auth/register/eleve ────────────────────────
 router.post('/register/eleve', limiterAuth, async (req, res) => {
   try {
-    const { nom, email, password, niveau, parentEmail } = req.body;
+    const { nom, email, telephone, password, niveau, parentEmail } = req.body;
 
-    if (!nom || !email || !password || !niveau)
-      return err(res, 'Nom, email, mot de passe et niveau sont requis');
+    if (!nom || (!email && !telephone) || !password || !niveau)
+      return err(res, 'Nom, email (ou téléphone), mot de passe et niveau sont requis');
     if (password.length < 6)
       return err(res, 'Le mot de passe doit contenir au moins 6 caractères');
 
-    const existe = await User.findOne({ email: email.toLowerCase().trim() });
-    if (existe) return err(res, 'Un compte existe déjà avec cet email', 409);
+    // Vérifier l'unicité (email ou téléphone)
+    if (email) {
+      const existe = await User.findOne({ email: email.toLowerCase().trim() });
+      if (existe) return err(res, 'Un compte existe déjà avec cet email', 409);
+    }
+    if (telephone) {
+      const existe = await User.findOne({ telephone: telephone.trim() });
+      if (existe) return err(res, 'Un compte existe déjà avec ce numéro de téléphone', 409);
+    }
 
     const eleve = await User.create({
-      nom:         nom.trim(),
-      email:       email.toLowerCase().trim(),
+      nom:          nom.trim(),
+      email:        email ? email.toLowerCase().trim() : undefined,
+      telephone:    telephone ? telephone.trim() : undefined,
       passwordHash: password,
-      role:        'eleve',
+      role:         'eleve',
       niveau,
-      parentEmail: parentEmail ? parentEmail.toLowerCase().trim() : null,
-      abonnement:  'gratuit',
+      parentEmail:  parentEmail ? parentEmail.toLowerCase().trim() : null,
+      abonnement:   'gratuit',
       statutCompte: 'actif',
     });
 
@@ -119,19 +127,26 @@ router.post('/register/eleve', limiterAuth, async (req, res) => {
 // ─── POST /api/auth/register/parent ───────────────────────
 router.post('/register/parent', limiterAuth, async (req, res) => {
   try {
-    const { nom, email, password, enfantsEmails } = req.body;
+    const { nom, email, telephone, password, enfantsEmails } = req.body;
 
-    if (!nom || !email || !password)
-      return err(res, 'Nom, email et mot de passe sont requis');
+    if (!nom || (!email && !telephone) || !password)
+      return err(res, 'Nom, email (ou téléphone) et mot de passe sont requis');
     if (password.length < 6)
       return err(res, 'Le mot de passe doit contenir au moins 6 caractères');
 
-    const existe = await User.findOne({ email: email.toLowerCase().trim() });
-    if (existe) return err(res, 'Un compte existe déjà avec cet email', 409);
+    if (email) {
+      const existe = await User.findOne({ email: email.toLowerCase().trim() });
+      if (existe) return err(res, 'Un compte existe déjà avec cet email', 409);
+    }
+    if (telephone) {
+      const existe = await User.findOne({ telephone: telephone.trim() });
+      if (existe) return err(res, 'Un compte existe déjà avec ce numéro de téléphone', 409);
+    }
 
     const parent = await User.create({
       nom:          nom.trim(),
-      email:        email.toLowerCase().trim(),
+      email:        email ? email.toLowerCase().trim() : undefined,
+      telephone:    telephone ? telephone.trim() : undefined,
       passwordHash: password,
       role:         'parent',
       statutCompte: 'actif',
