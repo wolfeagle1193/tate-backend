@@ -113,7 +113,11 @@ async function notifierResultat({ eleveId, chapitreId, score, maitrise, tentativ
       });
     }
 
-    if (notifs.length > 0) await Notification.insertMany(notifs);
+    if (notifs.length > 0) {
+      // ordered: false → chaque notification s'insère indépendamment ;
+      // une erreur sur une notif ne bloque pas les suivantes (admin toujours notifié)
+      await Notification.insertMany(notifs, { ordered: false });
+    }
   } catch (e) {
     console.error('⚠️ Erreur notifications résultat:', e.message);
   }
