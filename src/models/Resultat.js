@@ -11,8 +11,9 @@ const resultatSchema = new mongoose.Schema({
   score:       { type: Number, required: true, min: 0, max: 100 },  // %
   nbCorrectes: { type: Number, required: true },
   nbTotal:     { type: Number, required: true },
+  nbErreurs:   { type: Number, default: 0 },   // nbTotal - nbCorrectes
   tentative:   { type: Number, default: 1 },   // numéro de la tentative (1, 2, 3…)
-  maitrise:    { type: Boolean, default: false }, // true si score >= 80
+  maitrise:    { type: Boolean, default: false }, // true si nbErreurs <= 2 (max 2 fautes)
   completedAt: { type: Date, default: Date.now },
 }, { timestamps: true });
 

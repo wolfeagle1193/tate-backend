@@ -27,8 +27,9 @@ router.post('/soumettre', roleCheck('eleve'), async (req, res) => {
     if (!chapitreId || !leconId || score === undefined || !nbTotal)
       return err(res, 'chapitreId, leconId, score et nbTotal sont requis');
 
-    const eleveId = req.user._id;
-    const maitrise = score >= 80;
+    const eleveId  = req.user._id;
+    const nbErr    = nbTotal - (nbCorrectes || 0);
+    const maitrise = nbErr <= 2; // ✅ Règle : max 2 fautes pour valider
 
     // Compter combien de tentatives l'élève a déjà faites sur ce chapitre
     const nbTentativesPrecedentes = await Resultat.countDocuments({ eleveId, chapitreId });
@@ -38,10 +39,11 @@ router.post('/soumettre', roleCheck('eleve'), async (req, res) => {
     const resultat = await Resultat.create({
       eleveId, chapitreId, leconId,
       score, nbCorrectes, nbTotal,
+      nbErreurs: nbErr,
       tentative, maitrise,
     });
 
-    // Marquer le chapitre comme validé dans le profil de l'élève si score >= 80
+    // Marquer le chapitre comme validé dans le profil de l'élève si nbErreurs <= 2
     if (maitrise) {
       await User.findByIdAndUpdate(eleveId, {
         $addToSet: {
@@ -75,6 +77,9 @@ async function notifierResultat({ eleveId, chapitreId, score, maitrise, tentativ
     const eleveNom    = `${eleve?.prenom || ''} ${eleve?.nom || ''}`.trim() || 'Un élève';
     const chapitreNom = chapitre?.titre || 'Chapitre';
     const emoji = maitrise ? '⭐' : score >= 60 ? '📊' : '⚠️';
+    const nbErreurs = (tentative && score !== undefined)
+      ? undefined // calculated from score if needed
+      : 0;
 
     const notifs = [];
 
@@ -85,7 +90,7 @@ async function notifierResultat({ eleveId, chapitreId, score, maitrise, tentativ
       titre:   maitrise ? `${emoji} Bravo ! Chapitre maîtrisé !` : `${emoji} Résultat : ${score}%`,
       message: maitrise
         ? `Tu as obtenu ${score}% au QCM "${chapitreNom}". Excellent travail !`
-        : `Tu as obtenu ${score}% au QCM "${chapitreNom}". Il faut au moins 80% pour valider. Réessaie !`,
+        : `Tu as obtenu ${score}% au QCM "${chapitreNom}". Tu as dépassé 2 fautes. Relis le cours et réessaie !`,
       eleveId, eleveNom, chapitreId, chapitreNom, score,
     });
 
@@ -97,7 +102,7 @@ async function notifierResultat({ eleveId, chapitreId, score, maitrise, tentativ
         destinataireId: admin._id,
         type:    maitrise ? 'qcm_maitrise' : score < 60 ? 'qcm_difficulte' : 'qcm_resultat',
         titre:   `📋 Résultat QCM : ${eleveNom}`,
-        message: `${eleveNom} — "${chapitreNom}" : ${score}% (tentative n°${tentative})${maitrise ? ' ✅ Maîtrisé' : ''}`,
+        message: `${eleveNom} — "${chapitreNom}" : ${score}% (tentative n°${tentative})${maitrise ? ' ✅ Maîtrisé (≤2 fautes)' : ' ❌ Non validé (>2 fautes)'}`,
         eleveId, eleveNom, chapitreId, chapitreNom, score,
       });
     }
@@ -178,6 +183,112 @@ router.get('/eleve/:eleveId', roleCheck('admin', 'prof'), async (req, res) => {
       .populate('chapitreId', 'titre niveau matiereId')
       .sort({ completedAt: -1 });
     ok(res, resultats);
+  } catch (e) { err(res, e.message, 500); }
+});
+
+// ─────────────────────────────────────────────────────────────
+// GET /api/resultats/progression/:eleveId
+// Historique détaillé par chapitre — admin, prof, parent (ses enfants), élève (lui-même)
+// ─────────────────────────────────────────────────────────────
+router.get('/progression/:eleveId', async (req, res) => {
+  try {
+    const { eleveId } = req.params;
+    const demandeur   = req.user;
+
+    // Vérification d'accès
+    if (demandeur.role === 'eleve' && String(demandeur._id) !== eleveId) {
+      return err(res, 'Accès refusé', 403);
+    }
+    if (demandeur.role === 'parent') {
+      const enfantsIds = (demandeur.enfants || []).map(String);
+      if (!enfantsIds.includes(eleveId)) return err(res, 'Cet élève n\'est pas votre enfant', 403);
+    }
+    // admin & prof : accès libre
+
+    const resultats = await Resultat.find({ eleveId })
+      .populate('chapitreId', 'titre niveau matiereId')
+      .sort({ chapitreId: 1, tentative: 1 })
+      .lean();
+
+    // Grouper par chapitre
+    const chapMap = {};
+    for (const r of resultats) {
+      const cid = r.chapitreId?._id?.toString() || r.chapitreId?.toString();
+      if (!cid) continue;
+      if (!chapMap[cid]) {
+        chapMap[cid] = {
+          chapitreId:    r.chapitreId,
+          titre:         r.chapitreId?.titre || 'Chapitre',
+          niveau:        r.chapitreId?.niveau || '—',
+          tentatives:    [],
+          maitrise:      false,
+          meilleurScore: 0,
+          derniereAt:    null,
+        };
+      }
+      chapMap[cid].tentatives.push({
+        tentative:   r.tentative,
+        score:       r.score,
+        nbCorrectes: r.nbCorrectes,
+        nbTotal:     r.nbTotal,
+        nbErreurs:   r.nbErreurs ?? (r.nbTotal - r.nbCorrectes),
+        maitrise:    r.maitrise,
+        completedAt: r.completedAt,
+      });
+      if (r.maitrise)                      chapMap[cid].maitrise      = true;
+      if (r.score > chapMap[cid].meilleurScore) chapMap[cid].meilleurScore = r.score;
+      if (!chapMap[cid].derniereAt || new Date(r.completedAt) > new Date(chapMap[cid].derniereAt)) {
+        chapMap[cid].derniereAt = r.completedAt;
+      }
+    }
+
+    ok(res, Object.values(chapMap));
+  } catch (e) { err(res, e.message, 500); }
+});
+
+// ─────────────────────────────────────────────────────────────
+// GET /api/resultats/ma-progression   (l'élève voit sa propre progression)
+// ─────────────────────────────────────────────────────────────
+router.get('/ma-progression', roleCheck('eleve'), async (req, res) => {
+  try {
+    const eleveId = req.user._id;
+    const resultats = await Resultat.find({ eleveId })
+      .populate('chapitreId', 'titre niveau matiereId')
+      .sort({ chapitreId: 1, tentative: 1 })
+      .lean();
+
+    const chapMap = {};
+    for (const r of resultats) {
+      const cid = r.chapitreId?._id?.toString() || r.chapitreId?.toString();
+      if (!cid) continue;
+      if (!chapMap[cid]) {
+        chapMap[cid] = {
+          chapitreId:    r.chapitreId,
+          titre:         r.chapitreId?.titre || 'Chapitre',
+          niveau:        r.chapitreId?.niveau || '—',
+          tentatives:    [],
+          maitrise:      false,
+          meilleurScore: 0,
+          derniereAt:    null,
+        };
+      }
+      chapMap[cid].tentatives.push({
+        tentative:   r.tentative,
+        score:       r.score,
+        nbCorrectes: r.nbCorrectes,
+        nbTotal:     r.nbTotal,
+        nbErreurs:   r.nbErreurs ?? (r.nbTotal - r.nbCorrectes),
+        maitrise:    r.maitrise,
+        completedAt: r.completedAt,
+      });
+      if (r.maitrise)                                    chapMap[cid].maitrise      = true;
+      if (r.score > chapMap[cid].meilleurScore)          chapMap[cid].meilleurScore = r.score;
+      if (!chapMap[cid].derniereAt || new Date(r.completedAt) > new Date(chapMap[cid].derniereAt)) {
+        chapMap[cid].derniereAt = r.completedAt;
+      }
+    }
+
+    ok(res, Object.values(chapMap));
   } catch (e) { err(res, e.message, 500); }
 });
 
