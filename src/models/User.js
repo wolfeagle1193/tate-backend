@@ -8,8 +8,8 @@ const NIVEAUX = ['CM1','CM2','6eme','5eme','4eme','3eme','Seconde','Premiere','T
 
 const userSchema = new mongoose.Schema({
   nom:          { type: String, required: true, trim: true },
-  email:        { type: String, default: null, unique: true, sparse: true, lowercase: true, trim: true },
-  telephone:    { type: String, default: null, unique: true, sparse: true, trim: true },
+  email:        { type: String, required: true, unique: true, lowercase: true, trim: true },
+  telephone:    { type: String, unique: true, sparse: true, trim: true },
   passwordHash: { type: String, required: true },
   role:         { type: String, enum: ['admin','prof','eleve','parent'], required: true },
   niveau:       { type: String, enum: NIVEAUX, default: null },

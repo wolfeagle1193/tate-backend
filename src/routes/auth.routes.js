@@ -72,32 +72,34 @@ router.post('/register/eleve', limiterAuth, async (req, res) => {
   try {
     const { nom, email, telephone, password, niveau, parentEmail } = req.body;
 
-    if (!nom || (!email && !telephone) || !password || !niveau)
-      return err(res, 'Nom, email (ou téléphone), mot de passe et niveau sont requis');
+    if (!nom || !email || !password || !niveau)
+      return err(res, 'Nom, email, mot de passe et niveau sont requis');
     if (password.length < 6)
       return err(res, 'Le mot de passe doit contenir au moins 6 caractères');
 
-    // Vérifier l'unicité (email ou téléphone)
-    if (email) {
-      const existe = await User.findOne({ email: email.toLowerCase().trim() });
-      if (existe) return err(res, 'Un compte existe déjà avec cet email', 409);
-    }
+    // Vérifier l'unicité de l'email
+    const existe = await User.findOne({ email: email.toLowerCase().trim() });
+    if (existe) return err(res, 'Un compte existe déjà avec cet email', 409);
+
+    // Vérifier l'unicité du téléphone si fourni
     if (telephone) {
-      const existe = await User.findOne({ telephone: telephone.trim() });
-      if (existe) return err(res, 'Un compte existe déjà avec ce numéro de téléphone', 409);
+      const existeTel = await User.findOne({ telephone: telephone.trim() });
+      if (existeTel) return err(res, 'Un compte existe déjà avec ce numéro de téléphone', 409);
     }
 
-    const eleve = await User.create({
+    const elevData = {
       nom:          nom.trim(),
-      email:        email ? email.toLowerCase().trim() : undefined,
-      telephone:    telephone ? telephone.trim() : undefined,
+      email:        email.toLowerCase().trim(),
       passwordHash: password,
       role:         'eleve',
       niveau,
-      parentEmail:  parentEmail ? parentEmail.toLowerCase().trim() : null,
       abonnement:   'gratuit',
       statutCompte: 'actif',
-    });
+    };
+    if (telephone)   elevData.telephone   = telephone.trim();
+    if (parentEmail) elevData.parentEmail = parentEmail.toLowerCase().trim();
+
+    const eleve = await User.create(elevData);
 
     // Auto-link parent si email fourni et compte parent existant
     if (parentEmail) {
@@ -129,28 +131,29 @@ router.post('/register/parent', limiterAuth, async (req, res) => {
   try {
     const { nom, email, telephone, password, enfantsEmails } = req.body;
 
-    if (!nom || (!email && !telephone) || !password)
-      return err(res, 'Nom, email (ou téléphone) et mot de passe sont requis');
+    if (!nom || !email || !password)
+      return err(res, 'Nom, email et mot de passe sont requis');
     if (password.length < 6)
       return err(res, 'Le mot de passe doit contenir au moins 6 caractères');
 
-    if (email) {
-      const existe = await User.findOne({ email: email.toLowerCase().trim() });
-      if (existe) return err(res, 'Un compte existe déjà avec cet email', 409);
-    }
+    const existe = await User.findOne({ email: email.toLowerCase().trim() });
+    if (existe) return err(res, 'Un compte existe déjà avec cet email', 409);
+
     if (telephone) {
-      const existe = await User.findOne({ telephone: telephone.trim() });
-      if (existe) return err(res, 'Un compte existe déjà avec ce numéro de téléphone', 409);
+      const existeTel = await User.findOne({ telephone: telephone.trim() });
+      if (existeTel) return err(res, 'Un compte existe déjà avec ce numéro de téléphone', 409);
     }
 
-    const parent = await User.create({
+    const parentData = {
       nom:          nom.trim(),
-      email:        email ? email.toLowerCase().trim() : undefined,
-      telephone:    telephone ? telephone.trim() : undefined,
+      email:        email.toLowerCase().trim(),
       passwordHash: password,
       role:         'parent',
       statutCompte: 'actif',
-    });
+    };
+    if (telephone) parentData.telephone = telephone.trim();
+
+    const parent = await User.create(parentData);
 
     // Auto-link enfants si emails fournis
     const emailsEnfants = Array.isArray(enfantsEmails)
