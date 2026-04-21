@@ -50,18 +50,27 @@ router.post('/login', limiterAuth, async (req, res) => {
     user.lastActivity = new Date();
     await user.save();
 
+    // Recharger le user avec chapitresValides (non sélectionné par défaut)
+    const userFull = await User.findById(user._id).select('-passwordHash -refreshToken');
+
     ok(res, {
       accessToken:  tokens.accessToken,
       refreshToken: tokens.refreshToken,
       user: {
-        id:            user._id,
-        nom:           user.nom,
-        email:         user.email,
-        role:          user.role,
-        niveau:        user.niveau,
-        abonnement:    user.abonnement,
-        abonnementExpiry: user.abonnementExpiry,
-        statutCompte:  user.statutCompte,
+        id:               userFull._id,
+        nom:              userFull.nom,
+        prenom:           userFull.prenom,
+        email:            userFull.email,
+        telephone:        userFull.telephone,
+        role:             userFull.role,
+        niveau:           userFull.niveau,
+        abonnement:       userFull.abonnement,
+        abonnementExpiry: userFull.abonnementExpiry,
+        statutCompte:     userFull.statutCompte,
+        streak:           userFull.streak || 0,
+        chapitresValides: userFull.chapitresValides || [],
+        parentId:         userFull.parentId,
+        avatar:           userFull.avatar,
       },
     });
   } catch (e) { err(res, e.message, 500); }
@@ -255,6 +264,31 @@ router.post('/refresh', async (req, res) => {
     await user.save();
     ok(res, tokens);
   } catch (e) { err(res, 'Token invalide ou expiré', 401); }
+});
+
+// ─── GET /api/auth/me ─────────────────────────────────────
+// Retourne le profil complet et frais de l'utilisateur connecté
+router.get('/me', authJWT, async (req, res) => {
+  try {
+    const user = await User.findById(req.user._id).select('-passwordHash -refreshToken');
+    if (!user) return err(res, 'Utilisateur introuvable', 404);
+    ok(res, {
+      id:               user._id,
+      nom:              user.nom,
+      prenom:           user.prenom,
+      email:            user.email,
+      telephone:        user.telephone,
+      role:             user.role,
+      niveau:           user.niveau,
+      abonnement:       user.abonnement,
+      abonnementExpiry: user.abonnementExpiry,
+      statutCompte:     user.statutCompte,
+      streak:           user.streak || 0,
+      chapitresValides: user.chapitresValides || [],
+      parentId:         user.parentId,
+      avatar:           user.avatar,
+    });
+  } catch (e) { err(res, e.message, 500); }
 });
 
 // ─── POST /api/auth/logout ────────────────────────────────

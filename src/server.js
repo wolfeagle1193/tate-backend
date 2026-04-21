@@ -12,8 +12,9 @@ const {
   leconsRouter, exercicesRouter, statsRouter, classesRouter,
   reservationsRouter, epreuvesRouter, qcmRouter, notificationsRouter,
 } = require('./routes');
-const resultatsRouter         = require('./routes/resultats.routes');
+const resultatsRouter          = require('./routes/resultats.routes');
 const sessionsVirtuellesRouter = require('./routes/sessions-virtuelles.routes');
+const planningRouter           = require('./routes/planning.routes');
 
 // ── Auto-seed : crée admin + matières au premier démarrage ──
 const autoSeed = async () => {
@@ -113,6 +114,7 @@ app.use('/api/qcm',           qcmRouter);
 app.use('/api/notifications', notificationsRouter);
 app.use('/api/resultats',            resultatsRouter);
 app.use('/api/sessions-virtuelles', sessionsVirtuellesRouter);
+app.use('/api/planning',            planningRouter);
 
 // Servir les fichiers uploadés (CV, diplômes des profs)
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
