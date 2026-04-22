@@ -343,6 +343,24 @@ router.patch('/:id/masquer', roleCheck('admin'), async (req, res) => {
   } catch (e) { err(res, e.message, 500); }
 });
 
+// PATCH /api/lecons/:id/contenu — mettre à jour le contenu d'une leçon (admin)
+router.patch('/:id/contenu', roleCheck('admin'), async (req, res) => {
+  try {
+    const lecon = await Lecon.findById(req.params.id);
+    if (!lecon) return err(res, 'Leçon introuvable', 404);
+
+    // Champs modifiables
+    const { contenuHTML, contenuFormate, contenuStructure, titre } = req.body;
+    if (titre !== undefined)             lecon.titre            = titre;
+    if (contenuHTML !== undefined)       lecon.contenuHTML      = contenuHTML;
+    if (contenuFormate !== undefined)    lecon.contenuFormate   = contenuFormate;
+    if (contenuStructure !== undefined)  lecon.contenuStructure = contenuStructure;
+
+    await lecon.save();
+    ok(res, { message: 'Contenu mis à jour avec succès', lecon });
+  } catch (e) { err(res, e.message, 500); }
+});
+
 // DELETE /api/lecons/:id  (admin uniquement)
 router.delete('/:id', roleCheck('admin'), async (req, res) => {
   try {

@@ -77,7 +77,7 @@ router.get('/', roleCheck('admin', 'prof'), async (req, res) => {
 router.get('/mes-devoirs', roleCheck('eleve'), async (req, res) => {
   try {
     const plans = await PlanningCours.find({ eleveId: req.user._id })
-      .populate('chapitreId', 'titre niveau matiereId')
+      .populate({ path: 'chapitreId', select: 'titre niveau matiereId', populate: { path: 'matiereId', select: 'code nom' } })
       .sort({ dateProgrammee: 1 })
       .limit(20);
     ok(res, plans);
