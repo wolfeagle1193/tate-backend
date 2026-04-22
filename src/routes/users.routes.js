@@ -71,6 +71,27 @@ router.patch('/:id', roleCheck('admin'), async (req, res) => {
   } catch (e) { err(res, e.message, 500); }
 });
 
+// DELETE /api/users/:id — supprimer un élève ou professeur (admin seulement)
+router.delete('/:id', roleCheck('admin'), async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    if (!user) return err(res, 'Utilisateur introuvable', 404);
+    if (user.role === 'admin') return err(res, 'Impossible de supprimer un administrateur', 403);
+
+    // Délier des parents si c'est un élève
+    if (user.role === 'eleve' && user.parentId) {
+      await User.findByIdAndUpdate(user.parentId, { $pull: { enfants: user._id } });
+    }
+    // Retirer l'élève de la liste des enfants de son parent si prof/parent
+    if (user.role === 'parent' && user.enfants?.length > 0) {
+      await User.updateMany({ _id: { $in: user.enfants } }, { $unset: { parentId: 1, parentEmail: 1 } });
+    }
+
+    await User.findByIdAndDelete(req.params.id);
+    ok(res, { message: `Compte de ${user.nom} supprimé avec succès` });
+  } catch (e) { err(res, e.message, 500); }
+});
+
 // ── POST /api/users/souscrire ────────────────────────────────
 // L'élève initie son abonnement (2 000 FCFA/mois)
 // Génère une référence de paiement + instructions Wave / Orange Money

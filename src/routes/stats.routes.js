@@ -273,6 +273,12 @@ routerS.get('/tous-eleves', rcS('admin','prof'), async (req, res) => {
         .filter(c => c.maitrise)
         .map(c => ({ titre: c.titre, niveau: c.niveau }));
 
+      // Utiliser la date la plus récente entre : dernière session complétée ET dernière connexion
+      const d1 = stats.dernierAt   ? new Date(stats.dernierAt)       : null;
+      const d2 = eleve.lastActivity ? new Date(eleve.lastActivity)   : null;
+      const dernierAt = d1 && d2 ? (d1 > d2 ? d1 : d2)
+                      : d1 ?? d2 ?? null;
+
       return {
         _id:          eleve._id,
         nom:          eleve.nom,
@@ -283,7 +289,7 @@ routerS.get('/tous-eleves', rcS('admin','prof'), async (req, res) => {
         totalSessions:         stats.totalSessions || 0,
         maitrises:             stats.maitrises     || 0,
         scoreMoyen:            stats.scoreMoyen ? Math.round(stats.scoreMoyen) : null,
-        dernierAt:             stats.dernierAt  || null,
+        dernierAt,
         sessions,
         chapitresEnDifficulte,
         chapitresMaitrises,
