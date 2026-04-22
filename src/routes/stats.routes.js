@@ -5,6 +5,7 @@
 const expressS  = require('express');
 const User2     = require('../models/User');
 const Session2  = require('../models/Session');
+const Resultat2 = require('../models/Resultat');
 const Chapitre2 = require('../models/Chapitre');
 const Matiere2  = require('../models/Matiere');
 const { authJWT: ajwtS, roleCheck: rcS } = require('../middlewares');
@@ -194,28 +195,28 @@ routerS.get('/tous-eleves', rcS('admin','prof'), async (req, res) => {
 
     const eleveIds = eleves.map(e => e._id);
 
-    // Agréger les sessions par élève
-    const statsParEleve = await Session2.aggregate([
-      { $match: { eleveId: { $in: eleveIds }, statut:'terminee' } },
+    // Agréger les résultats par élève (modèle Resultat — nouveau système HTML)
+    const statsParEleve = await Resultat2.aggregate([
+      { $match: { eleveId: { $in: eleveIds } } },
       { $group: {
-          _id:         '$eleveId',
+          _id:           '$eleveId',
           totalSessions: { $sum: 1 },
           maitrises:     { $sum: { $cond: ['$maitrise', 1, 0] } },
-          scoreMoyen:    { $avg: '$scorePct' },
+          scoreMoyen:    { $avg: '$score' },
           dernierAt:     { $max: '$completedAt' },
-          premierAt:     { $min: '$startedAt' },
+          premierAt:     { $min: '$completedAt' },
       }},
     ]);
 
-    // Détail des sessions par élève (pour le modal)
-    const sessionsDetaillees = await Session2.aggregate([
-      { $match: { eleveId: { $in: eleveIds }, statut:'terminee' } },
+    // Détail des résultats par élève (pour le modal)
+    const sessionsDetaillees = await Resultat2.aggregate([
+      { $match: { eleveId: { $in: eleveIds } } },
       { $sort: { completedAt: -1 } },
       { $group: {
           _id: '$eleveId',
           sessions: { $push: {
             chapitreId:  '$chapitreId',
-            scorePct:    '$scorePct',
+            scorePct:    '$score',
             maitrise:    '$maitrise',
             tentative:   '$tentative',
             completedAt: '$completedAt',
