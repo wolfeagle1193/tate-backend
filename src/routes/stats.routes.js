@@ -110,6 +110,21 @@ routerS.get('/admin', rcS('admin'), async (req, res) => {
       { $sort: { total:-1 } },
     ]);
 
+    /* ── sessions par matière (toutes périodes) ── */
+    const sessionsParMatiere = await Session2.aggregate([
+      { $lookup: { from:'chapitres', localField:'chapitreId', foreignField:'_id', as:'chap' } },
+      { $unwind: { path:'$chap', preserveNullAndEmptyArrays:true } },
+      { $lookup: { from:'matieres', localField:'chap.matiereId', foreignField:'_id', as:'mat' } },
+      { $unwind: { path:'$mat', preserveNullAndEmptyArrays:true } },
+      { $group: {
+          _id:      '$mat.nom',
+          code:     { $first: '$mat.code' },
+          total:    { $sum: 1 },
+          maitrises:{ $sum: { $cond: ['$maitrise', 1, 0] } },
+      }},
+      { $sort: { total: -1 } },
+    ]);
+
     /* ── sessions récentes (10 dernières) ── */
     const sessionsRecentes = await Session2.find({ statut:'terminee' })
       .sort({ completedAt:-1 })
@@ -140,6 +155,7 @@ routerS.get('/admin', rcS('admin'), async (req, res) => {
       topChapitres,
       topEleves,
       activiteLangues,
+      sessionsParMatiere,
       sessionsRecentes: sessionsRecentes.map(s => ({
         eleveNom:     s.eleveId?.nom    || 'Inconnu',
         eleveNiveau:  s.eleveId?.niveau || '—',

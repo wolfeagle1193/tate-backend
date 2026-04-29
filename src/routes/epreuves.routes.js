@@ -75,21 +75,24 @@ router.get('/:id', async (req, res) => {
 // Créer une nouvelle épreuve (admin uniquement)
 router.post('/', roleCheck('admin'), async (req, res) => {
   try {
-    const { type, matiere, niveau, annee, session, titre, duree, coefficient, enonce, questions } = req.body;
+    const { type, matiere, niveau, annee, session, titre, duree, coefficient,
+            enonce, questions, contenuHTML, correctionHTML } = req.body;
     if (!['BFEM','BAC'].includes(type))          return err(res, 'type doit être BFEM ou BAC');
     if (!['3eme','Terminale'].includes(niveau))   return err(res, 'niveau doit être 3eme ou Terminale');
     if (!matiere || !annee)                       return err(res, 'matiere et annee sont requis');
 
     const epreuve = await Epreuve.create({
       type, matiere, niveau, annee,
-      session:     session     || 'Normale',
-      titre:       titre       || '',
-      duree:       duree       || '',
-      coefficient: coefficient || 1,
-      enonce:      enonce      || '',
-      questions:   questions   || [],
-      publie:      false,
-      creePar:     req.user._id,
+      session:        session        || 'Normale',
+      titre:          titre          || '',
+      duree:          duree          || '',
+      coefficient:    coefficient    || 1,
+      enonce:         enonce         || '',
+      questions:      questions      || [],
+      contenuHTML:    contenuHTML    || '',
+      correctionHTML: correctionHTML || '',
+      publie:         false,
+      creePar:        req.user._id,
     });
     ok(res, epreuve, 201);
   } catch (e) { err(res, e.message, 500); }
@@ -100,7 +103,7 @@ router.post('/', roleCheck('admin'), async (req, res) => {
 router.put('/:id', roleCheck('admin'), async (req, res) => {
   try {
     const autorise = ['type','matiere','niveau','annee','session','titre','duree',
-                      'coefficient','enonce','questions','publie'];
+                      'coefficient','enonce','questions','publie','contenuHTML','correctionHTML'];
     const update = {};
     autorise.forEach(k => { if (req.body[k] !== undefined) update[k] = req.body[k]; });
 

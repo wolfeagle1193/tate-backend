@@ -123,6 +123,7 @@ router.post('/creer-html', roleCheck('admin','prof'), async (req, res) => {
       instructionsHTML   = '',   // consigne IA pour modifier le HTML (optionnel)
       instructionsExos   = '',   // consigne IA pour générer des exercices (optionnel)
       genererExos        = false, // true = demande à Claude de générer des exercices
+      dureeExercices     = null,  // durée en minutes (null = pas de timer)
     } = req.body;
 
     if (!chapitreId) return err(res, 'chapitreId obligatoire');
@@ -197,6 +198,7 @@ router.post('/creer-html', roleCheck('admin','prof'), async (req, res) => {
         objectif:        '',
         correctionsTypes,
       },
+      dureeExercices: dureeExercices ? parseInt(dureeExercices) : null,
       statut:  'en_preparation',
       creePar: req.user._id,
     });
@@ -350,11 +352,12 @@ router.patch('/:id/contenu', roleCheck('admin'), async (req, res) => {
     if (!lecon) return err(res, 'Leçon introuvable', 404);
 
     // Champs modifiables
-    const { contenuHTML, contenuFormate, contenuStructure, titre } = req.body;
+    const { contenuHTML, contenuFormate, contenuStructure, titre, dureeExercices } = req.body;
     if (titre !== undefined)             lecon.titre            = titre;
     if (contenuHTML !== undefined)       lecon.contenuHTML      = contenuHTML;
     if (contenuFormate !== undefined)    lecon.contenuFormate   = contenuFormate;
     if (contenuStructure !== undefined)  lecon.contenuStructure = contenuStructure;
+    if (dureeExercices !== undefined)    lecon.dureeExercices   = dureeExercices ? parseInt(dureeExercices) : null;
 
     await lecon.save();
     ok(res, { message: 'Contenu mis à jour avec succès', lecon });

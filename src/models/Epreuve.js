@@ -28,10 +28,16 @@ const epreuveSchema = new mongoose.Schema({
   duree:     { type: String, default: '' },          // ex: '4h'
   coefficient:{ type: Number, default: 1 },
 
-  // Texte introductif / documents joints à l'épreuve
+  // ── Format HTML (nouveau) ────────────────────────────────────
+  // Contenu de l'épreuve en HTML (fichier uploadé par admin)
+  contenuHTML:    { type: String, default: '' },
+  // Correction complète en HTML (visible uniquement Premium)
+  correctionHTML: { type: String, default: '' },
+
+  // Texte introductif / documents joints à l'épreuve (ancien format)
   enonce:    { type: String, default: '' },
 
-  // Questions avec corrections masquées
+  // Questions avec corrections masquées (ancien format)
   questions: [questionSchema],
 
   publie:    { type: Boolean, default: false },

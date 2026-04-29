@@ -43,6 +43,9 @@ const leconSchema = new mongoose.Schema({
       explication: String,  // Explication pédagogique (révélée après correction)
     }],
   },
+  // Durée limite des exercices en minutes (null = pas de timer)
+  dureeExercices: { type: Number, default: null },
+
   statut:     { type: String, enum: ['brouillon', 'en_preparation', 'valide', 'publie'], default: 'brouillon' },
   masque:     { type: Boolean, default: false },   // masqué temporairement (visible admin, caché élèves)
   masquePar:  { type: mongoose.Schema.Types.ObjectId, ref: 'User', default: null },
