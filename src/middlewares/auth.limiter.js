@@ -1,15 +1,16 @@
 const rateLimit = require('express-rate-limit');
 
-// Limite globale — toutes les routes API
+// Limite globale — désactivée pour une application éducative
+// (les élèves ne doivent jamais être bloqués par des limites de requêtes)
 const limiterGlobal = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max:      200,
-  message:  { success: false, error: 'Trop de requêtes, réessaie dans 15 minutes' },
+  max:      100000, // pratiquement illimité
   standardHeaders: true,
   legacyHeaders:   false,
+  skip: () => true, // désactivé complètement
 });
 
-// Limite appels Claude — protège les coûts API
+// Limite appels Claude — protège les coûts API (seule limite conservée)
 const limiterClaude = rateLimit({
   windowMs:        60 * 60 * 1000,
   max:             60,
@@ -19,13 +20,13 @@ const limiterClaude = rateLimit({
   validate:        { xForwardedForHeader: false },
 });
 
-// Limite connexion — anti brute force
+// Limite connexion — désactivée (application éducative, pas de brute force à craindre)
 const limiterAuth = rateLimit({
   windowMs:        15 * 60 * 1000,
-  max:             10,
-  message:         { success: false, error: 'Trop de tentatives de connexion' },
+  max:             100000,
   standardHeaders: true,
   legacyHeaders:   false,
+  skip: () => true, // désactivé complètement
 });
 
 module.exports = { limiterGlobal, limiterClaude, limiterAuth };
