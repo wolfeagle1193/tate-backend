@@ -134,7 +134,7 @@ async function notifierResultat({ eleveId, chapitreId, score, maitrise, tentativ
 router.get('/mes-resultats', roleCheck('eleve'), async (req, res) => {
   try {
     const resultats = await Resultat.find({ eleveId: req.user._id })
-      .populate('chapitreId', 'titre niveau matiereId')
+      .populate({ path: 'chapitreId', select: 'titre niveau matiereId', populate: { path: 'matiereId', select: 'nom code' } })
       .sort({ completedAt: -1 });
     ok(res, resultats);
   } catch (e) { err(res, e.message, 500); }
@@ -154,7 +154,7 @@ router.get('/', roleCheck('admin', 'prof'), async (req, res) => {
 
     const resultats = await Resultat.find(filtre)
       .populate('eleveId',    'nom prenom niveau email')
-      .populate('chapitreId', 'titre niveau matiereId')
+      .populate({ path: 'chapitreId', select: 'titre niveau matiereId', populate: { path: 'matiereId', select: 'nom code' } })
       .sort({ completedAt: -1 })
       .limit(200);
 
@@ -180,7 +180,7 @@ router.get('/chapitre/:chapitreId', roleCheck('admin', 'prof'), async (req, res)
 router.get('/eleve/:eleveId', roleCheck('admin', 'prof'), async (req, res) => {
   try {
     const resultats = await Resultat.find({ eleveId: req.params.eleveId })
-      .populate('chapitreId', 'titre niveau matiereId')
+      .populate({ path: 'chapitreId', select: 'titre niveau matiereId', populate: { path: 'matiereId', select: 'nom code' } })
       .sort({ completedAt: -1 });
     ok(res, resultats);
   } catch (e) { err(res, e.message, 500); }
@@ -206,7 +206,7 @@ router.get('/progression/:eleveId', async (req, res) => {
     // admin & prof : accès libre
 
     const resultats = await Resultat.find({ eleveId })
-      .populate('chapitreId', 'titre niveau matiereId')
+      .populate({ path: 'chapitreId', select: 'titre niveau matiereId', populate: { path: 'matiereId', select: 'nom code' } })
       .sort({ chapitreId: 1, tentative: 1 })
       .lean();
 
@@ -253,7 +253,7 @@ router.get('/ma-progression', roleCheck('eleve'), async (req, res) => {
   try {
     const eleveId = req.user._id;
     const resultats = await Resultat.find({ eleveId })
-      .populate('chapitreId', 'titre niveau matiereId')
+      .populate({ path: 'chapitreId', select: 'titre niveau matiereId', populate: { path: 'matiereId', select: 'nom code' } })
       .sort({ chapitreId: 1, tentative: 1 })
       .lean();
 
