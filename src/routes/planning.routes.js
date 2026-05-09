@@ -72,6 +72,30 @@ router.get('/', roleCheck('admin', 'prof'), async (req, res) => {
 });
 
 // ─────────────────────────────────────────────────────────────
+// GET /api/planning/enfant/:eleveId  — Parent voit les devoirs de son enfant
+// ─────────────────────────────────────────────────────────────
+router.get('/enfant/:eleveId', roleCheck('parent', 'admin', 'prof'), async (req, res) => {
+  try {
+    const { eleveId } = req.params;
+
+    // Vérifier que l'élève est bien l'enfant du parent
+    if (req.user.role === 'parent') {
+      const enfantsIds = (req.user.enfants || []).map(String);
+      if (!enfantsIds.includes(eleveId)) {
+        return err(res, 'Cet élève n\'est pas votre enfant', 403);
+      }
+    }
+
+    const plans = await PlanningCours.find({ eleveId })
+      .populate({ path: 'chapitreId', select: 'titre niveau matiereId', populate: { path: 'matiereId', select: 'code nom' } })
+      .sort({ dateProgrammee: -1 })
+      .limit(30);
+
+    ok(res, plans);
+  } catch (e) { err(res, e.message, 500); }
+});
+
+// ─────────────────────────────────────────────────────────────
 // GET /api/planning/mes-devoirs  — Élève voit ses propres plannings
 // ─────────────────────────────────────────────────────────────
 router.get('/mes-devoirs', roleCheck('eleve'), async (req, res) => {

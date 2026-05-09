@@ -298,6 +298,26 @@ router.post('/logout', authJWT, async (req, res) => {
   ok(res, { message: 'Déconnecté avec succès' });
 });
 
+// ─── PUT /api/auth/changer-mot-de-passe ──────────────────
+// Tout utilisateur connecté peut changer son propre mot de passe
+router.put('/changer-mot-de-passe', authJWT, async (req, res) => {
+  try {
+    const { ancienMotDePasse, nouveauMotDePasse } = req.body;
+    if (!ancienMotDePasse || !nouveauMotDePasse)
+      return err(res, 'Ancien et nouveau mot de passe requis');
+    if (nouveauMotDePasse.length < 6)
+      return err(res, 'Le nouveau mot de passe doit faire au moins 6 caractères');
+
+    const valide = await req.user.verifierMotDePasse(ancienMotDePasse);
+    if (!valide) return err(res, 'Ancien mot de passe incorrect', 401);
+
+    req.user.passwordHash = nouveauMotDePasse;
+    await req.user.save();
+
+    ok(res, { message: 'Mot de passe mis à jour avec succès' });
+  } catch (e) { err(res, e.message, 500); }
+});
+
 // ─── POST /api/auth/google ────────────────────────────────
 // Connexion / inscription via Google Identity Services
 router.post('/google', limiterAuth, async (req, res) => {

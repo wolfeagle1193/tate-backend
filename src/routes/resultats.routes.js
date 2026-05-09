@@ -292,4 +292,28 @@ router.get('/ma-progression', roleCheck('eleve'), async (req, res) => {
   } catch (e) { err(res, e.message, 500); }
 });
 
+// ─────────────────────────────────────────────────────────────
+// DELETE /api/resultats/eleve/:eleveId/chapitre/:chapitreId
+// Admin/Prof : réinitialise tous les résultats d'un élève
+// sur un chapitre donné + retire la validation de son profil
+// ─────────────────────────────────────────────────────────────
+router.delete('/eleve/:eleveId/chapitre/:chapitreId', roleCheck('admin', 'prof'), async (req, res) => {
+  try {
+    const { eleveId, chapitreId } = req.params;
+
+    // 1. Supprimer tous les Resultats de cet élève pour ce chapitre
+    const del = await Resultat.deleteMany({ eleveId, chapitreId });
+
+    // 2. Retirer le chapitre de chapitresValides dans le profil de l'élève
+    await User.findByIdAndUpdate(eleveId, {
+      $pull: { chapitresValides: { chapitreId } },
+    });
+
+    ok(res, {
+      message:    'Chapitre réinitialisé avec succès',
+      supprimés:  del.deletedCount,
+    });
+  } catch (e) { err(res, e.message, 500); }
+});
+
 module.exports = router;
