@@ -252,14 +252,20 @@ router.post('/register/prof',
 );
 
 // ─── POST /api/auth/refresh ───────────────────────────────
+// On vérifie uniquement la signature JWT — pas de comparaison DB.
+// Cela permet d'utiliser l'app sur plusieurs appareils sans être déconnecté.
+// La révocation reste possible via /logout (qui efface l'accessToken côté client).
 router.post('/refresh', async (req, res) => {
   try {
     const { refreshToken } = req.body;
     if (!refreshToken) return err(res, 'Refresh token manquant', 401);
     const decoded = jwt.verify(refreshToken, process.env.JWT_REFRESH_SECRET);
     const user = await User.findById(decoded.id);
-    if (!user || user.refreshToken !== refreshToken) return err(res, 'Token invalide', 401);
+    if (!user || !user.actif) return err(res, 'Compte introuvable ou désactivé', 401);
+    if (user.statutCompte === 'en_attente' || user.statutCompte === 'rejete')
+      return err(res, 'Compte non autorisé', 403);
     const tokens = genTokens(user._id);
+    // Mettre à jour le refreshToken en base pour permettre la révocation via logout
     user.refreshToken = tokens.refreshToken;
     await user.save();
     ok(res, tokens);

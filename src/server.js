@@ -10,7 +10,8 @@ const { limiterGlobal } = require('./middlewares');
 const {
   authRouter, usersRouter, matieresRouter, chapitresRouter,
   leconsRouter, exercicesRouter, statsRouter, classesRouter,
-  reservationsRouter, epreuvesRouter, qcmRouter, notificationsRouter,
+  reservationsRouter, epreuvesRouter, entrainementsRouter,
+  qcmRouter, notificationsRouter,
 } = require('./routes');
 const resultatsRouter          = require('./routes/resultats.routes');
 const sessionsVirtuellesRouter = require('./routes/sessions-virtuelles.routes');
@@ -109,8 +110,9 @@ app.use('/api/lecons',       leconsRouter);
 app.use('/api/exercices',    exercicesRouter);
 app.use('/api/stats',        statsRouter);
 app.use('/api/reservations', reservationsRouter);
-app.use('/api/epreuves',     epreuvesRouter);
-app.use('/api/qcm',           qcmRouter);
+app.use('/api/epreuves',       epreuvesRouter);
+app.use('/api/entrainements',  entrainementsRouter);
+app.use('/api/qcm',            qcmRouter);
 app.use('/api/notifications', notificationsRouter);
 app.use('/api/resultats',            resultatsRouter);
 app.use('/api/sessions-virtuelles', sessionsVirtuellesRouter);

@@ -10,7 +10,10 @@ const notificationSchema = new mongoose.Schema({
   // Type de notification
   type: {
     type: String,
-    enum: ['qcm_resultat', 'qcm_maitrise', 'qcm_difficulte', 'session_resultat', 'nouveau_cours'],
+    enum: [
+      'qcm_resultat', 'qcm_maitrise', 'qcm_difficulte', 'session_resultat', 'nouveau_cours',
+      'planning_nouveau', 'planning_rappel', 'planning_retard',
+    ],
     required: true,
   },
 
