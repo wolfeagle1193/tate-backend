@@ -42,6 +42,32 @@ ${corps}
 </body></html>`;
 }
 
+// ── QCM HTML helper ────────────────────────────────────────────────────────
+// Génère une section QCM interactive (radio buttons) à injecter dans la leçon
+function buildQCM(qcm) {
+  const questionsHTML = qcm.questions.map((q, i) => {
+    const num = i + 1;
+    const optionsHTML = q.options.map(o =>
+      `    <label><input type="radio" name="q${num}" value="${o.lettre}" data-correct="${o.lettre === q.reponseCorrecte}"> ${o.lettre}. ${o.texte}</label>`
+    ).join('\n');
+    return `  <div class="question">
+    <p><strong>${num}. ${q.enonce}</strong></p>
+${optionsHTML}
+  </div>`;
+  }).join('\n');
+
+  return `<hr style="margin:32px 0;border:none;border-top:2px dashed #FDE68A;">
+<h2>${qcm.titre}</h2>
+<p style="color:#7C2D12;font-size:0.9rem;font-style:italic;margin-bottom:18px;">Coche la bonne réponse. Une seule réponse correcte par question.</p>
+${questionsHTML}
+`;
+}
+
+// Injecte le QCM interactif dans le HTML de la leçon (avant </body>)
+function injectQCM(fullHTML, qcm) {
+  return fullHTML.replace('</body></html>', buildQCM(qcm) + '</body></html>');
+}
+
 // ═══════════════════════════════════════════════════════════════════════════
 // CONTENU DES LEÇONS (L01 → L06)
 // ═══════════════════════════════════════════════════════════════════════════
@@ -102,16 +128,6 @@ const L01_HTML = wrapHTML('Les lentilles minces', `
 </table>
 
 <div class="astuce">💡 Astuce mnémotechnique : <strong>Myopie = Moins (divergente)</strong>, <strong>Hypermétropie = Hopla (convergente)</strong>.</div>
-
-<h2>VIII. Exercice type</h2>
-<div class="exemple">
-  Un objet AB est placé à 30 cm devant une lentille convergente de vergence +4 δ.
-  <br><strong>1.</strong> Calculer f' : f' = 1/4 = 0,25 m = 25 cm
-  <br><strong>2.</strong> Appliquer la formule : OA = −30 cm (objet réel à gauche)
-  <br>1/OA' = 1/f' + 1/OA = 1/25 + 1/(−30) = 6/150 − 5/150 = 1/150
-  <br>OA' = 150 cm → image réelle, renversée, agrandie
-  <br><strong>3.</strong> g = 150/(−30) = −5 (image 5× agrandie, renversée)
-</div>
 `);
 
 const L02_HTML = wrapHTML('Dispersion de la lumière blanche', `
@@ -483,12 +499,12 @@ const QCM_L06 = {
 // ═══════════════════════════════════════════════════════════════════════════
 
 const CHAPITRES_PART1 = [
-  { code:'PC-3e-L01', titre:'Les lentilles minces', objectif:'Distinguer lentilles convergentes et divergentes, construire géométriquement une image et appliquer la formule de conjugaison et la vergence.', ordre:1, html: L01_HTML, qcm: QCM_L01 },
-  { code:'PC-3e-L02', titre:'Dispersion de la lumière blanche', objectif:'Expliquer la dispersion de la lumière blanche par un prisme, distinguer lumières monochromatique et polychromatique, comprendre l\'arc-en-ciel.', ordre:2, html: L02_HTML, qcm: QCM_L02 },
-  { code:'PC-3e-L03', titre:'Les forces', objectif:'Identifier les caractéristiques d\'une force, calculer le poids, représenter des forces et appliquer les conditions d\'équilibre.', ordre:3, html: L03_HTML, qcm: QCM_L03 },
-  { code:'PC-3e-L04', titre:'Travail et puissance mécanique', objectif:'Calculer le travail d\'une force et la puissance mécanique, distinguer travail moteur, résistant et nul.', ordre:4, html: L04_HTML, qcm: QCM_L04 },
-  { code:'PC-3e-L05', titre:'Électrisation et courant électrique', objectif:'Expliquer l\'électrisation par frottement, comprendre la nature et le sens du courant électrique, calculer l\'intensité.', ordre:5, html: L05_HTML, qcm: QCM_L05 },
-  { code:'PC-3e-L06', titre:'Résistance électrique', objectif:'Appliquer la loi d\'Ohm, calculer la résistance équivalente en série et en dérivation, utiliser la notion de résistivité.', ordre:6, html: L06_HTML, qcm: QCM_L06 },
+  { code:'PC-3e-L01', titre:'Les lentilles minces', objectif:'Distinguer lentilles convergentes et divergentes, construire géométriquement une image et appliquer la formule de conjugaison et la vergence.', ordre:1, html: injectQCM(L01_HTML, QCM_L01), qcm: QCM_L01 },
+  { code:'PC-3e-L02', titre:'Dispersion de la lumière blanche', objectif:'Expliquer la dispersion de la lumière blanche par un prisme, distinguer lumières monochromatique et polychromatique, comprendre l\'arc-en-ciel.', ordre:2, html: injectQCM(L02_HTML, QCM_L02), qcm: QCM_L02 },
+  { code:'PC-3e-L03', titre:'Les forces', objectif:'Identifier les caractéristiques d\'une force, calculer le poids, représenter des forces et appliquer les conditions d\'équilibre.', ordre:3, html: injectQCM(L03_HTML, QCM_L03), qcm: QCM_L03 },
+  { code:'PC-3e-L04', titre:'Travail et puissance mécanique', objectif:'Calculer le travail d\'une force et la puissance mécanique, distinguer travail moteur, résistant et nul.', ordre:4, html: injectQCM(L04_HTML, QCM_L04), qcm: QCM_L04 },
+  { code:'PC-3e-L05', titre:'Électrisation et courant électrique', objectif:'Expliquer l\'électrisation par frottement, comprendre la nature et le sens du courant électrique, calculer l\'intensité.', ordre:5, html: injectQCM(L05_HTML, QCM_L05), qcm: QCM_L05 },
+  { code:'PC-3e-L06', titre:'Résistance électrique', objectif:'Appliquer la loi d\'Ohm, calculer la résistance équivalente en série et en dérivation, utiliser la notion de résistivité.', ordre:6, html: injectQCM(L06_HTML, QCM_L06), qcm: QCM_L06 },
 ];
 
 // ═══════════════════════════════════════════════════════════════════════════

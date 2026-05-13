@@ -41,6 +41,28 @@ ${corps}
 </body></html>`;
 }
 
+// ── QCM HTML helpers ───────────────────────────────────────────────────────
+function buildQCM(qcm) {
+  const questionsHTML = qcm.questions.map((q, i) => {
+    const num = i + 1;
+    const optionsHTML = q.options.map(o =>
+      `    <label><input type="radio" name="q${num}" value="${o.lettre}" data-correct="${o.lettre === q.reponseCorrecte}"> ${o.lettre}. ${o.texte}</label>`
+    ).join('\n');
+    return `  <div class="question">
+    <p><strong>${num}. ${q.enonce}</strong></p>
+${optionsHTML}
+  </div>`;
+  }).join('\n');
+  return `<hr style="margin:32px 0;border:none;border-top:2px dashed #FDE68A;">
+<h2>${qcm.titre}</h2>
+<p style="color:#7C2D12;font-size:0.9rem;font-style:italic;margin-bottom:18px;">Coche la bonne réponse. Une seule réponse correcte par question.</p>
+${questionsHTML}
+`;
+}
+function injectQCM(fullHTML, qcm) {
+  return fullHTML.replace('</body></html>', buildQCM(qcm) + '</body></html>');
+}
+
 // ─── L07 : Transformation d'énergie électrique ───────────────────────────
 const L07_HTML = wrapHTML('Transformation d\'énergie électrique', `
 <div class="objectif">🎯 Objectif : Calculer l'énergie et la puissance électrique, comprendre l'effet Joule et calculer un rendement.</div>
@@ -439,11 +461,11 @@ const QCM_L11 = {
 
 // ═══════════════════════════════════════════════════════════════════════════
 const CHAPITRES_PART2 = [
-  { titre:'Transformation d\'énergie électrique', objectif:'Calculer l\'énergie et la puissance électrique, comprendre l\'effet Joule et calculer le rendement d\'un appareil électrique.', ordre:7, html:L07_HTML, qcm:QCM_L07 },
-  { titre:'Solutions aqueuses', objectif:'Définir une solution aqueuse, calculer la concentration massique et molaire, appliquer les lois de dilution.', ordre:8, html:L08_HTML, qcm:QCM_L08 },
-  { titre:'Acides et bases', objectif:'Identifier acides et bases par leurs propriétés, comprendre la neutralisation et réaliser un dosage acido-basique.', ordre:9, html:L09_HTML, qcm:QCM_L09 },
-  { titre:'Propriétés chimiques des métaux usuels', objectif:'Connaître les réactions des métaux courants (Fe, Al, Cu, Zn, Pb) avec l\'oxygène et les acides, écrire et équilibrer les équations.', ordre:10, html:L10_HTML, qcm:QCM_L10 },
-  { titre:'Les hydrocarbures', objectif:'Classer les hydrocarbures (alcanes, alcènes, alcynes), écrire leurs formules générales et les équations de combustion complète et incomplète.', ordre:11, html:L11_HTML, qcm:QCM_L11 },
+  { titre:'Transformation d\'énergie électrique', objectif:'Calculer l\'énergie et la puissance électrique, comprendre l\'effet Joule et calculer le rendement d\'un appareil électrique.', ordre:7, html:injectQCM(L07_HTML, QCM_L07), qcm:QCM_L07 },
+  { titre:'Solutions aqueuses', objectif:'Définir une solution aqueuse, calculer la concentration massique et molaire, appliquer les lois de dilution.', ordre:8, html:injectQCM(L08_HTML, QCM_L08), qcm:QCM_L08 },
+  { titre:'Acides et bases', objectif:'Identifier acides et bases par leurs propriétés, comprendre la neutralisation et réaliser un dosage acido-basique.', ordre:9, html:injectQCM(L09_HTML, QCM_L09), qcm:QCM_L09 },
+  { titre:'Propriétés chimiques des métaux usuels', objectif:'Connaître les réactions des métaux courants (Fe, Al, Cu, Zn, Pb) avec l\'oxygène et les acides, écrire et équilibrer les équations.', ordre:10, html:injectQCM(L10_HTML, QCM_L10), qcm:QCM_L10 },
+  { titre:'Les hydrocarbures', objectif:'Classer les hydrocarbures (alcanes, alcènes, alcynes), écrire leurs formules générales et les équations de combustion complète et incomplète.', ordre:11, html:injectQCM(L11_HTML, QCM_L11), qcm:QCM_L11 },
 ];
 
 async function main() {
