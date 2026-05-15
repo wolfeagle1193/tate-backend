@@ -81,6 +81,8 @@ app.use(cors({
           process.env.FRONTEND_URL,
           'https://tate.sn',
           'https://www.tate.sn',
+          'https://tateschool.online',
+          'https://www.tateschool.online',
         ].filter(Boolean)
       : ['http://localhost:3000', 'http://localhost:5173'];
 
