@@ -833,6 +833,24 @@ function genererQuizHTML(titre, questions) {
 </div>`;
 }
 
+// Génère le HTML du QCM interactif (radio buttons) à intégrer dans contenuHTML
+function genererQCMEmbed(questions) {
+  const qHtml = questions.map((q, i) => {
+    const opts = q.options.map(o => {
+      const correct = o.lettre === q.reponseCorrecte ? ' data-correct="true"' : '';
+      return `  <label><input type="radio" name="q${i + 1}" value="${o.lettre}"${correct}> ${o.lettre}. ${o.texte}</label>`;
+    }).join('\n');
+    return `<div class="question">
+  <p><strong>${i + 1}. ${q.enonce}</strong></p>
+${opts}
+</div>`;
+  }).join('\n\n');
+
+  return `\n\n<h2>✏️ QCM — Vérifie tes connaissances</h2>
+<p style="font-size:0.9rem;color:#92400e;margin-bottom:16px">Choisis la bonne réponse pour chaque question, puis valide !</p>
+${qHtml}`;
+}
+
 function genererCorrectionHTML(titre, questions) {
   const qs = questions.map((q, i) => `
   <div class="correction-item">
@@ -901,7 +919,7 @@ const seed = async () => {
       chapitreId:   chapitre._id,
       titre:        data.titre,
       contenuBrut:  '',
-      contenuHTML:  data.contenuHTML.trim(),
+      contenuHTML:  data.contenuHTML.trim() + genererQCMEmbed(data.qcm),
       contenuFormate: {
         resume:          '',
         objectif:        data.objectif,
