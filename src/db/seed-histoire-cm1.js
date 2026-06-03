@@ -21,9 +21,6 @@ const Entrainement  = require('../models/Entrainement');
 // ─────────────────────────────────────────────────────────────
 const LECONS_DATA = [
 
-  // ══════════════════════════════════════════════════════════
-  // LEÇON 1 : L'HISTOIRE
-  // ══════════════════════════════════════════════════════════
   {
     ordre: 1,
     titre: "L'Histoire",
@@ -69,6 +66,13 @@ const LECONS_DATA = [
       { question: "À partir de quel événement commence l'ère chrétienne ?", reponse: "L'ère chrétienne commence à partir de la naissance de Jésus Christ (l'an 1).", explication: "C'est le premier système de datation utilisé en histoire." },
       { question: "Qu'est-ce que l'Hégire ?", reponse: "L'Hégire est l'exil du prophète Mohamed (PSL) de la Mecque vers Médine.", explication: "C'est l'an 1 de l'ère musulmane, qui correspond à 622 après Jésus Christ." },
       { question: "En quelle année a eu lieu l'Hégire ?", reponse: "L'Hégire a eu lieu en 622 après Jésus Christ.", explication: "C'est le point de départ de l'ère musulmane." },
+    ,
+      { question: "Qu'est-ce que l'histoire ?", reponse: "Une science qui etudie le passe des hommes et leur civilisation.", explication: "Commence avec les metaux et l'ecriture." },
+      { question: "Cite les sources de l'histoire.", reponse: "Sources orales, ecrites, vestiges, sites historiques.", explication: "4 sources." },
+      { question: "Qu'est-ce que l'Hegire ?", reponse: "L'exil du prophete Mohamed de la Mecque vers Medine en 622.", explication: "An 1 de l'ere musulmane." },
+      { question: "Quand commence l'ere chretienne ?", reponse: "A partir de la naissance de Jesus Christ (an 1).", explication: "Calendrier chretien." },
+      { question: "Que marque l'an 1 de l'ere musulmane ?", reponse: "L'Hegire en 622 apres JC.", explication: "Exil a Medine." },
+      { question: "Cite les deux systemes de datation.", reponse: "L'ere chretienne et l'ere musulmane.", explication: "2 systemes." }
     ],
     qcm: [
       {
@@ -126,12 +130,19 @@ const LECONS_DATA = [
         reponseCorrecte: "B",
         explication: "Les 4 sources de l'histoire sont : orales, écrites, vestiges et sites historiques.",
       },
+    ,
+      { enonce: "L'histoire etudie :", options: [{"lettre":"A","texte":"Le futur"},{"lettre":"B","texte":"Le passe des hommes"},{"lettre":"C","texte":"Les animaux"},{"lettre":"D","texte":"Les plantes"}], reponseCorrecte: "B", explication: "Le passe." },
+      { enonce: "Combien de sources ?", options: [{"lettre":"A","texte":"2"},{"lettre":"B","texte":"3"},{"lettre":"C","texte":"4"},{"lettre":"D","texte":"5"}], reponseCorrecte: "C", explication: "4 sources." },
+      { enonce: "L'Hegire est l'exil vers :", options: [{"lettre":"A","texte":"La Mecque"},{"lettre":"B","texte":"Medine"},{"lettre":"C","texte":"Jerusalem"},{"lettre":"D","texte":"Damas"}], reponseCorrecte: "B", explication: "Medine." },
+      { enonce: "L'ere musulmane commence en :", options: [{"lettre":"A","texte":"500"},{"lettre":"B","texte":"622"},{"lettre":"C","texte":"700"},{"lettre":"D","texte":"1000"}], reponseCorrecte: "B", explication: "622." },
+      { enonce: "L'histoire commence avec :", options: [{"lettre":"A","texte":"Apparition homme"},{"lettre":"B","texte":"Metaux et ecriture"},{"lettre":"C","texte":"J.C."},{"lettre":"D","texte":"Hegire"}], reponseCorrecte: "B", explication: "Metaux/ecriture." }
     ],
   },
 
   // ══════════════════════════════════════════════════════════
   // LEÇON 2 : LA PRÉHISTOIRE
   // ══════════════════════════════════════════════════════════
+,
   {
     ordre: 2,
     titre: "La Préhistoire",
@@ -176,6 +187,13 @@ const LECONS_DATA = [
       { question: "Qu'est-ce que le Néolithique ?", reponse: "Le Néolithique est l'âge de la pierre polie. L'homme se sédentarise, pratique l'agriculture et l'élevage, et crée les premiers villages.", explication: "C'est la seconde grande période de la préhistoire." },
       { question: "Pourquoi l'Afrique est-elle appelée le berceau de l'humanité ?", reponse: "Parce que les squelettes les plus anciens ont été découverts en Afrique.", explication: "Cela prouve que les premiers hommes sont apparus sur le continent africain." },
       { question: "Quelle est la différence entre un homme nomade et un homme sédentaire ?", reponse: "Un nomade se déplace constamment (Paléolithique). Un sédentaire s'installe dans un lieu fixe et crée des villages (Néolithique).", explication: "C'est l'une des grandes évolutions entre les deux périodes de la préhistoire." },
+    ,
+      { question: "Qu'est-ce que la prehistoire ?", reponse: "De l'apparition de l'homme a la decouverte des metaux et de l'ecriture.", explication: "Avant l'histoire." },
+      { question: "Cite les deux periodes.", reponse: "Paleolithique (pierre taillee) et Neolithique (pierre polie).", explication: "2 periodes." },
+      { question: "Vie au Paleolithique ?", reponse: "Chasse, peche, cueillette. Homme nomade.", explication: "Nomade." },
+      { question: "Vie au Neolithique ?", reponse: "Agriculture, elevage, tissage, poterie. Sedentaire.", explication: "Sedentaire." },
+      { question: "Afrique = berceau humanite ?", reponse: "Car plus vieux squelettes y ont ete trouves.", explication: "Vieux fossiles." },
+      { question: "Qu'est-ce que le Paleolithique ?", reponse: "L'age de la pierre taillee.", explication: "1ere periode." }
     ],
     qcm: [
       {
@@ -233,12 +251,19 @@ const LECONS_DATA = [
         reponseCorrecte: "B",
         explication: "La préhistoire compte deux grandes périodes : le Paléolithique et le Néolithique.",
       },
+    ,
+      { enonce: "Prehistoire commence avec :", options: [{"lettre":"A","texte":"Ecriture"},{"lettre":"B","texte":"Apparition homme"},{"lettre":"C","texte":"Metaux"},{"lettre":"D","texte":"J.C."}], reponseCorrecte: "B", explication: "Apparition homme." },
+      { enonce: "Paleolithique : homme", options: [{"lettre":"A","texte":"Sedentaire"},{"lettre":"B","texte":"Nomade"},{"lettre":"C","texte":"Agriculteur"},{"lettre":"D","texte":"Commerc."}], reponseCorrecte: "B", explication: "Nomade." },
+      { enonce: "Neolithique : homme maitrise", options: [{"lettre":"A","texte":"Feu"},{"lettre":"B","texte":"Ecriture"},{"lettre":"C","texte":"Metaux"},{"lettre":"D","texte":"Armes"}], reponseCorrecte: "A", explication: "Feu." },
+      { enonce: "Afrique = berceau de", options: [{"lettre":"A","texte":"Civilisation"},{"lettre":"B","texte":"Humanite"},{"lettre":"C","texte":"Ecriture"},{"lettre":"D","texte":"Islam"}], reponseCorrecte: "B", explication: "Humanite." },
+      { enonce: "Neolithique = age de la", options: [{"lettre":"A","texte":"Pierre taillee"},{"lettre":"B","texte":"Pierre polie"},{"lettre":"C","texte":"Metaux"},{"lettre":"D","texte":"Bronze"}], reponseCorrecte: "B", explication: "Pierre polie." }
     ],
   },
 
   // ══════════════════════════════════════════════════════════
   // LEÇON 3 : LA PRÉHISTOIRE AU SÉNÉGAL
   // ══════════════════════════════════════════════════════════
+,
   {
     ordre: 3,
     titre: "La Préhistoire au Sénégal",
@@ -285,6 +310,13 @@ const LECONS_DATA = [
       { question: "Qui a inventé la datation par le carbone 14 ?", reponse: "La datation par le carbone 14 a été inventée par le Professeur Cheikh Anta Diop.", explication: "Cheikh Anta Diop était un grand savant sénégalais." },
       { question: "Que signifie IFAN ?", reponse: "IFAN signifie Institut Fondamental d'Afrique Noire.", explication: "C'est un institut de recherche et de conservation du patrimoine africain." },
       { question: "Qu'est-ce que la Protohistoire ?", reponse: "La Protohistoire est la période comprise entre la préhistoire et l'histoire.", explication: "C'est une période de transition entre ces deux grandes époques." },
+    ,
+      { question: "Cite les sites prehistoriques du Senegal.", reponse: "Pointe de Fann, Madeleines, Bel-Air (Dakar), Thièmassas (Thiès), Niokolo-Koba (Tambacounda).", explication: "5 sites." },
+      { question: "Ou sont gardes les vestiges ?", reponse: "Au musee de l'I.F.A.N.", explication: "IFAN." },
+      { question: "Qui a invente le carbone 14 ?", reponse: "Cheikh Anta Diop.", explication: "Savant senegalais." },
+      { question: "A quoi sert le carbone 14 ?", reponse: "Dater ossements et vestiges.", explication: "Technique scientifique." },
+      { question: "Qu'est-ce que la protohistoire ?", reponse: "Periode entre prehistoire et histoire.", explication: "Transition." },
+      { question: "Quels outils decouverts ?", reponse: "Silex, grattoirs, percoirs, pointes, lames.", explication: "Outils pierre." }
     ],
     qcm: [
       {
@@ -342,12 +374,19 @@ const LECONS_DATA = [
         reponseCorrecte: "C",
         explication: "La Protohistoire est la période de transition entre la préhistoire et l'histoire.",
       },
+    ,
+      { enonce: "Vestiges au musee de", options: [{"lettre":"A","texte":"UNESCO"},{"lettre":"B","texte":"IFAN"},{"lettre":"C","texte":"OMVS"},{"lettre":"D","texte":"OMVG"}], reponseCorrecte: "B", explication: "IFAN." },
+      { enonce: "Carbone 14 invente par", options: [{"lettre":"A","texte":"Lat Dior"},{"lettre":"B","texte":"Cheikh Anta Diop"},{"lettre":"C","texte":"Omar Tall"},{"lettre":"D","texte":"Ndiadiane"}], reponseCorrecte: "B", explication: "Cheikh Anta Diop." },
+      { enonce: "Thièmassas est a", options: [{"lettre":"A","texte":"Dakar"},{"lettre":"B","texte":"Thiès"},{"lettre":"C","texte":"Tambacounda"},{"lettre":"D","texte":"St-Louis"}], reponseCorrecte: "B", explication: "Thiès." },
+      { enonce: "Protohistoire = entre", options: [{"lettre":"A","texte":"Paleo/Neo"},{"lettre":"B","texte":"Prehistoire/histoire"},{"lettre":"C","texte":"Ecriture/metaux"},{"lettre":"D","texte":"Christ/Hegire"}], reponseCorrecte: "B", explication: "Prehistoire et histoire." },
+      { enonce: "Pointe de Fann a", options: [{"lettre":"A","texte":"Thiès"},{"lettre":"B","texte":"Tambacounda"},{"lettre":"C","texte":"Dakar"},{"lettre":"D","texte":"St-Louis"}], reponseCorrecte: "C", explication: "Dakar." }
     ],
   },
 
   // ══════════════════════════════════════════════════════════
   // LEÇON 4 : L'ÉVOLUTION DES SOCIÉTÉS AFRICAINES
   // ══════════════════════════════════════════════════════════
+,
   {
     ordre: 4,
     titre: "L'Évolution des Sociétés Africaines",
@@ -409,6 +448,13 @@ const LECONS_DATA = [
       { question: "Qu'est-ce qu'un clan ?", reponse: "Un clan est un ensemble de personnes issues du même ancêtre.", explication: "Le clan est plus grand que la famille mais plus petit que la tribu." },
       { question: "Qu'est-ce qu'une ethnie ?", reponse: "Une ethnie regroupe des personnes qui ont en commun la langue, la culture et les noms.", explication: "Par exemple, les Wolof, les Sérères et les Peuls sont des ethnies sénégalaises." },
       { question: "Qu'est-ce qu'un royaume ?", reponse: "Un royaume est un pays, un état gouverné par un roi.", explication: "C'est la structure la plus grande de la société africaine traditionnelle." },
+    ,
+      { question: "Cite les 5 structures.", reponse: "Famille, clan, tribu, ethnie, royaume.", explication: "5." },
+      { question: "Famille africaine ?", reponse: "Cellule de base, etendue.", explication: "Base." },
+      { question: "Qu'est-ce qu'un clan ?", reponse: "Personnes du meme ancetre.", explication: "Meme ancetre." },
+      { question: "Qu'est-ce qu'une tribu ?", reponse: "Groupe de familles liees par solidarite ethnique.", explication: "Groupe." },
+      { question: "Qu'est-ce qu'une ethnie ?", reponse: "Meme langue, culture, noms.", explication: "Communaute." },
+      { question: "Qu'est-ce qu'un royaume ?", reponse: "Etat gouverne par un roi.", explication: "Monarchie." }
     ],
     qcm: [
       {
@@ -466,12 +512,19 @@ const LECONS_DATA = [
         reponseCorrecte: "B",
         explication: "Le royaume est bien un pays gouverné par un roi.",
       },
+    ,
+      { enonce: "Cellule de base =", options: [{"lettre":"A","texte":"Village"},{"lettre":"B","texte":"Famille"},{"lettre":"C","texte":"Royaume"},{"lettre":"D","texte":"Tribu"}], reponseCorrecte: "B", explication: "Famille." },
+      { enonce: "Combien de structures ?", options: [{"lettre":"A","texte":"3"},{"lettre":"B","texte":"4"},{"lettre":"C","texte":"5"},{"lettre":"D","texte":"6"}], reponseCorrecte: "C", explication: "5." },
+      { enonce: "Clan = meme", options: [{"lettre":"A","texte":"Village"},{"lettre":"B","texte":"Ancetre"},{"lettre":"C","texte":"Ethnie"},{"lettre":"D","texte":"Roi"}], reponseCorrecte: "B", explication: "Ancetre." },
+      { enonce: "Ethnie partage", options: [{"lettre":"A","texte":"Richesse"},{"lettre":"B","texte":"Langue/culture/noms"},{"lettre":"C","texte":"Metier"},{"lettre":"D","texte":"Age"}], reponseCorrecte: "B", explication: "Langue/culture." },
+      { enonce: "Royaume gouverne par", options: [{"lettre":"A","texte":"President"},{"lettre":"B","texte":"Roi"},{"lettre":"C","texte":"Empereur"},{"lettre":"D","texte":"Chef"}], reponseCorrecte: "B", explication: "Roi." }
     ],
   },
 
   // ══════════════════════════════════════════════════════════
   // LEÇON 5 : LE DJOLOF
   // ══════════════════════════════════════════════════════════
+,
   {
     ordre: 5,
     titre: "Le Djolof",
@@ -510,6 +563,13 @@ const LECONS_DATA = [
       { question: "Quel titre portait le roi du Djolof ?", reponse: "Le roi du Djolof portait le titre de Bourba.", explication: "Chaque royaume avait son propre titre royal." },
       { question: "À quelle bataille le Djolof s'est-il disloqué ?", reponse: "Le Djolof s'est disloqué à la bataille de Danki en 1549.", explication: "Amary Ngoné Sobel a tué le Bourba Lélé Fouli Fack lors de cette bataille." },
       { question: "Qui était le dernier Bourba du Djolof ?", reponse: "Alboury Ndiaye était le dernier Bourba du Djolof.", explication: "Alboury Ndiaye a résisté aux Français avant de mourir en exil au Niger." },
+    ,
+      { question: "Qui a fonde le Djolof ?", reponse: "Ndiadiane Ndiaye.", explication: "Fondateur." },
+      { question: "Capitale du Djolof ?", reponse: "Yang-Yang.", explication: "Capitale." },
+      { question: "Titre du roi ?", reponse: "Bourba.", explication: "Titre." },
+      { question: "Cause dislocation ?", reponse: "Mort du Bourba Lele Fouli Fack, tue par Amary Ngone Sobel a Danki 1549.", explication: "Bataille Danki 1549." },
+      { question: "Dernier Bourba ?", reponse: "Alboury Ndiaye.", explication: "Dernier." },
+      { question: "Emplacement ?", reponse: "Actuelle region de Louga.", explication: "Louga." }
     ],
     qcm: [
       {
@@ -567,12 +627,19 @@ const LECONS_DATA = [
         reponseCorrecte: "D",
         explication: "Alboury Ndiaye fut le dernier Bourba du Djolof.",
       },
+    ,
+      { enonce: "Djolof fonde par", options: [{"lettre":"A","texte":"Lat Dior"},{"lettre":"B","texte":"Ndiadiane Ndiaye"},{"lettre":"C","texte":"Alboury"},{"lettre":"D","texte":"Amary"}], reponseCorrecte: "B", explication: "Ndiadiane." },
+      { enonce: "Capitale Djolof", options: [{"lettre":"A","texte":"Mboul"},{"lettre":"B","texte":"Yang-Yang"},{"lettre":"C","texte":"Nder"},{"lettre":"D","texte":"Diakhao"}], reponseCorrecte: "B", explication: "Yang-Yang." },
+      { enonce: "Titre roi Djolof", options: [{"lettre":"A","texte":"Damel"},{"lettre":"B","texte":"Brack"},{"lettre":"C","texte":"Bourba"},{"lettre":"D","texte":"Tegne"}], reponseCorrecte: "C", explication: "Bourba." },
+      { enonce: "Bataille Danki en", options: [{"lettre":"A","texte":"1498"},{"lettre":"B","texte":"1549"},{"lettre":"C","texte":"1600"},{"lettre":"D","texte":"1700"}], reponseCorrecte: "B", explication: "1549." },
+      { enonce: "Dernier Bourba", options: [{"lettre":"A","texte":"Lat Dior"},{"lettre":"B","texte":"Ndiadiane"},{"lettre":"C","texte":"Amary"},{"lettre":"D","texte":"Alboury Ndiaye"}], reponseCorrecte: "D", explication: "Alboury Ndiaye." }
     ],
   },
 
   // ══════════════════════════════════════════════════════════
   // LEÇON 6 : LE CAYOR
   // ══════════════════════════════════════════════════════════
+,
   {
     ordre: 6,
     titre: "Le Cayor",
@@ -614,6 +681,13 @@ const LECONS_DATA = [
       { question: "Quel titre portait le roi du Cayor ?", reponse: "Le roi du Cayor portait le titre de Damel, qui signifie 'briseur'.", explication: "Chaque royaume sénégalais avait son propre titre royal." },
       { question: "Qui a libéré le Cayor du Djolof ?", reponse: "Amary Ngoné Sobel a libéré le Cayor du Djolof à la bataille de Danki en 1549.", explication: "C'est à partir de cette date que le Cayor est devenu indépendant." },
       { question: "Cite 2 grands souverains du Cayor.", reponse: "Lat Soukabé Ngoné Diéye Fall, Maïssa Bigué, et Lat Dior Ngoné Latyr Diop.", explication: "Lat Dior est le plus célèbre des Damel du Cayor." },
+    ,
+      { question: "Ou etait le Cayor ?", reponse: "Ouest Senegal (Thiès, Dakar).", explication: "Ouest." },
+      { question: "Qui a libere le Cayor ?", reponse: "Amary Ngone Sobel a Danki 1549.", explication: "Bataille." },
+      { question: "Titre du roi ?", reponse: "Damel (briseur).", explication: "Damel." },
+      { question: "Capitale ?", reponse: "Mboul.", explication: "Capitale." },
+      { question: "Activites ?", reponse: "Commerce, agriculture, elevage.", explication: "3." },
+      { question: "Grands souverains ?", reponse: "Lat Soukabe, Maissa Bigue, Lat Dior.", explication: "Souverains." }
     ],
     qcm: [
       {
@@ -671,12 +745,19 @@ const LECONS_DATA = [
         reponseCorrecte: "B",
         explication: "Lat Dior Ngoné Latyr Diop est le plus célèbre des Damel du Cayor, héros national sénégalais.",
       },
+    ,
+      { enonce: "Cayor sur regions", options: [{"lettre":"A","texte":"Louga/St-Louis"},{"lettre":"B","texte":"Thiès/Dakar"},{"lettre":"C","texte":"Diourbel/Fatick"},{"lettre":"D","texte":"Kaolack"}], reponseCorrecte: "B", explication: "Thiès/Dakar." },
+      { enonce: "Titre roi Cayor", options: [{"lettre":"A","texte":"Bourba"},{"lettre":"B","texte":"Brack"},{"lettre":"C","texte":"Damel"},{"lettre":"D","texte":"Bour"}], reponseCorrecte: "C", explication: "Damel." },
+      { enonce: "Capitale Cayor", options: [{"lettre":"A","texte":"Yang-Yang"},{"lettre":"B","texte":"Mboul"},{"lettre":"C","texte":"Nder"},{"lettre":"D","texte":"Lambaye"}], reponseCorrecte: "B", explication: "Mboul." },
+      { enonce: "Libere par", options: [{"lettre":"A","texte":"Lat Dior"},{"lettre":"B","texte":"Amary Ngone Sobel"},{"lettre":"C","texte":"Ndiadiane"},{"lettre":"D","texte":"Alboury"}], reponseCorrecte: "B", explication: "Amary Ngone." },
+      { enonce: "Damel =", options: [{"lettre":"A","texte":"Roi"},{"lettre":"B","texte":"Briseur"},{"lettre":"C","texte":"Maitre"},{"lettre":"D","texte":"Guerrier"}], reponseCorrecte: "B", explication: "Briseur." }
     ],
   },
 
   // ══════════════════════════════════════════════════════════
   // LEÇON 7 : LE WALO
   // ══════════════════════════════════════════════════════════
+,
   {
     ordre: 7,
     titre: "Le Walo",
@@ -715,6 +796,13 @@ const LECONS_DATA = [
       { question: "Quel titre portait le roi du Walo ?", reponse: "Le roi du Walo portait le titre de Brack.", explication: "Chaque royaume sénégalais avait son propre titre pour le roi." },
       { question: "Qui était Ndieumbeut Mbodj ?", reponse: "Ndieumbeut Mbodj était une reine du Walo qui épousa le roi maure Mohamed El Habib pour établir la paix.", explication: "Ce mariage permit de mettre fin aux attaques des Maures Trarza contre le Walo." },
       { question: "En quelle année le Walo fut-il annexé par les Français ?", reponse: "Le Walo fut annexé par les Français en 1859.", explication: "C'est ainsi que le Walo perdit son indépendance et fut intégré à la colonie française." },
+    ,
+      { question: "Ou etait le Walo ?", reponse: "Nord-ouest (St-Louis).", explication: "St-Louis." },
+      { question: "Capitale ?", reponse: "Nder.", explication: "Capitale." },
+      { question: "Titre du roi ?", reponse: "Brack.", explication: "Brack." },
+      { question: "Conseillers du Brack ?", reponse: "Diaodin (terre), Diogomay (eaux), Malo (tresorier).", explication: "3 conseillers." },
+      { question: "Annexion francaise ?", reponse: "En 1859.", explication: "1859." },
+      { question: "Fonde par ?", reponse: "Ndiadiane Ndiaye, dirige par Mbarka Mbo.", explication: "13eme s." }
     ],
     qcm: [
       {
@@ -772,12 +860,19 @@ const LECONS_DATA = [
         reponseCorrecte: "B",
         explication: "Ndieumbeut Mbodj épousa Mohamed El Habib pour établir la paix avec les Maures Trarza.",
       },
+    ,
+      { enonce: "Walo = region", options: [{"lettre":"A","texte":"Louga"},{"lettre":"B","texte":"St-Louis"},{"lettre":"C","texte":"Thiès"},{"lettre":"D","texte":"Dakar"}], reponseCorrecte: "B", explication: "St-Louis." },
+      { enonce: "Titre roi Walo", options: [{"lettre":"A","texte":"Bourba"},{"lettre":"B","texte":"Brack"},{"lettre":"C","texte":"Damel"},{"lettre":"D","texte":"Bour"}], reponseCorrecte: "B", explication: "Brack." },
+      { enonce: "Capitale Walo", options: [{"lettre":"A","texte":"Yang-Yang"},{"lettre":"B","texte":"Mboul"},{"lettre":"C","texte":"Nder"},{"lettre":"D","texte":"Diakhao"}], reponseCorrecte: "C", explication: "Nder." },
+      { enonce: "Diaodin =", options: [{"lettre":"A","texte":"Tresorier"},{"lettre":"B","texte":"Maitre terre"},{"lettre":"C","texte":"Maitre eaux"},{"lettre":"D","texte":"Guerrier"}], reponseCorrecte: "B", explication: "Maitre terre." },
+      { enonce: "Walo annexe en", options: [{"lettre":"A","texte":"1800"},{"lettre":"B","texte":"1859"},{"lettre":"C","texte":"1900"},{"lettre":"D","texte":"1914"}], reponseCorrecte: "B", explication: "1859." }
     ],
   },
 
   // ══════════════════════════════════════════════════════════
   // LEÇON 8 : LES ROYAUMES DU SINE ET DU SALOUM
   // ══════════════════════════════════════════════════════════
+,
   {
     ordre: 8,
     titre: "Les Royaumes du Sine et du Saloum",
@@ -820,6 +915,13 @@ const LECONS_DATA = [
       { question: "Qui a fondé le Saloum ?", reponse: "Le Saloum a été fondé par Mbégane Ndour.", explication: "Il est le fondateur du royaume du Saloum." },
       { question: "Quelle était la capitale du Saloum ?", reponse: "La capitale du Saloum était Kahone.", explication: "Kahone se trouve dans l'actuelle région de Kaolack." },
       { question: "Quel était le titre du roi dans le Sine et le Saloum ?", reponse: "Dans le Sine et le Saloum, le roi portait le titre de Bour.", explication: "Les deux royaumes sérères partageaient le même titre royal." },
+    ,
+      { question: "Fondateur du Sine ?", reponse: "Maissa Waly Dione Mane (Gabou).", explication: "Fondateur." },
+      { question: "Ou etait le Sine ?", reponse: "Region de Fatick.", explication: "Fatick." },
+      { question: "Capitale Sine ? Titre ?", reponse: "Diakhao. Titre: Bour.", explication: "Diakhao/Bour." },
+      { question: "Fondateur du Saloum ?", reponse: "Mbegane Ndour.", explication: "Fondateur." },
+      { question: "Ou etait le Saloum ?", reponse: "Kaolack et Kaffrine.", explication: "Kaolack." },
+      { question: "Dernier roi Saloum ?", reponse: "Fode Ngouy Diouf.", explication: "Dernier." }
     ],
     qcm: [
       {
@@ -877,12 +979,19 @@ const LECONS_DATA = [
         reponseCorrecte: "D",
         explication: "Dans les deux royaumes sérères (Sine et Saloum), le roi portait le titre de Bour.",
       },
+    ,
+      { enonce: "Sine fonde par", options: [{"lettre":"A","texte":"Mbegane"},{"lettre":"B","texte":"Maissa Waly"},{"lettre":"C","texte":"Ndiadiane"},{"lettre":"D","texte":"Koli"}], reponseCorrecte: "B", explication: "Maissa Waly." },
+      { enonce: "Capitale Sine", options: [{"lettre":"A","texte":"Kahone"},{"lettre":"B","texte":"Diakhao"},{"lettre":"C","texte":"Nder"},{"lettre":"D","texte":"Lambaye"}], reponseCorrecte: "B", explication: "Diakhao." },
+      { enonce: "Saloum fonde par", options: [{"lettre":"A","texte":"Maissa"},{"lettre":"B","texte":"Mbegane Ndour"},{"lettre":"C","texte":"Fode"},{"lettre":"D","texte":"Koumba"}], reponseCorrecte: "B", explication: "Mbegane Ndour." },
+      { enonce: "Capitale Saloum", options: [{"lettre":"A","texte":"Diakhao"},{"lettre":"B","texte":"Kahone"},{"lettre":"C","texte":"Mboul"},{"lettre":"D","texte":"Yang-Yang"}], reponseCorrecte: "B", explication: "Kahone." },
+      { enonce: "Titre Sine/Saloum", options: [{"lettre":"A","texte":"Damel"},{"lettre":"B","texte":"Brack"},{"lettre":"C","texte":"Bour"},{"lettre":"D","texte":"Tegne"}], reponseCorrecte: "C", explication: "Bour." }
     ],
   },
 
   // ══════════════════════════════════════════════════════════
   // LEÇON 12 : LES ANCIENS ROYAUMES DU SÉNÉGAL (tableau récap)
   // ══════════════════════════════════════════════════════════
+,
   {
     ordre: 12,
     titre: "Les Anciens Royaumes du Sénégal",
@@ -940,6 +1049,13 @@ const LECONS_DATA = [
       { question: "Quelle est la capitale de la Casamance ?", reponse: "La capitale de la Casamance était Madina.", explication: "Le royaume de Casamance avait Madina comme capitale." },
       { question: "Quel est le titre du roi du Fouta ?", reponse: "Le titre du roi du Fouta est Almamy.", explication: "Le Fouta et le Rip partageaient le titre d'Almamy pour leurs rois." },
       { question: "Qui est le célèbre roi du Cayor ?", reponse: "Le célèbre roi du Cayor est Lat Dior Ngoné Latyr Diop.", explication: "Lat Dior est un héros national sénégalais qui a résisté à la colonisation française." },
+    ,
+      { question: "Capitale du Cayor ?", reponse: "Mboul.", explication: "Cayor." },
+      { question: "Roi celebre Djolof ?", reponse: "Alboury Ndiaye.", explication: "Dernier Bourba." },
+      { question: "Capitale Fouta ?", reponse: "Mboumba.", explication: "Fouta." },
+      { question: "Titre roi Baol ?", reponse: "Tegne.", explication: "Baol." },
+      { question: "Titre roi Fouta ?", reponse: "Almamy.", explication: "Almamy." },
+      { question: "Roi celebre Sine ?", reponse: "Coumba Ndoffene Diouf.", explication: "Sine." }
     ],
     qcm: [
       {
@@ -997,12 +1113,19 @@ const LECONS_DATA = [
         reponseCorrecte: "C",
         explication: "Le Fouta et le Rip avaient tous deux le titre d'Almamy pour leur roi.",
       },
+    ,
+      { enonce: "Capitale Djolof", options: [{"lettre":"A","texte":"Mboul"},{"lettre":"B","texte":"Yang-Yang"},{"lettre":"C","texte":"Nder"},{"lettre":"D","texte":"Diakhao"}], reponseCorrecte: "B", explication: "Yang-Yang." },
+      { enonce: "Capitale Casamance", options: [{"lettre":"A","texte":"Madina"},{"lettre":"B","texte":"Nioro"},{"lettre":"C","texte":"Mboumba"},{"lettre":"D","texte":"Lambaye"}], reponseCorrecte: "A", explication: "Madina." },
+      { enonce: "Capitale Rip", options: [{"lettre":"A","texte":"Mboumba"},{"lettre":"B","texte":"Nioro"},{"lettre":"C","texte":"Madina"},{"lettre":"D","texte":"Kahone"}], reponseCorrecte: "B", explication: "Nioro." },
+      { enonce: "Almamy du Rip =", options: [{"lettre":"A","texte":"Sine"},{"lettre":"B","texte":"Maba Diakhou Ba"},{"lettre":"C","texte":"Walo"},{"lettre":"D","texte":"Fouta"}], reponseCorrecte: "B", explication: "Maba Diakhou Ba." },
+      { enonce: "Roi du Baol titre", options: [{"lettre":"A","texte":"Bourba"},{"lettre":"B","texte":"Brack"},{"lettre":"C","texte":"Tegne"},{"lettre":"D","texte":"Almamy"}], reponseCorrecte: "C", explication: "Tegne." }
     ],
   },
 
   // ══════════════════════════════════════════════════════════
   // LEÇON 16 : LA RÉSISTANCE ARMÉE
   // ══════════════════════════════════════════════════════════
+,
   {
     ordre: 16,
     titre: "La Résistance Armée",
@@ -1046,6 +1169,10 @@ const LECONS_DATA = [
       { question: "Quels moyens les Français ont-ils utilisés pour vaincre les résistants africains ?", reponse: "Les Français ont utilisé la ruse, des moyens militaires énormes et la stratégie de division entre chefs africains.", explication: "Malgré le courage des résistants, les Français ont réussi à les vaincre grâce à leur supériorité militaire." },
       { question: "À quel pays Samory Touré appartenait-il ?", reponse: "Samory Touré était un résistant de Guinée (Afrique de l'Ouest).", explication: "La résistance à la colonisation s'est organisée dans toute l'Afrique de l'Ouest." },
       { question: "Qui était Béhanzin ?", reponse: "Béhanzin était un célèbre résistant du Dahomey (actuel Bénin) en Afrique de l'Ouest.", explication: "Il a résisté courageusement à la colonisation française de son royaume." },
+    ,
+      { question: "Cite les chefs de la resistance.", reponse: "El Hadj Omar, Lat Dior, Alboury, Ahmadou Cheikhou, Samory, Behanzin, Rabah.", explication: "Grands chefs." },
+      { question: "Pourquoi ont-ils resiste ?", reponse: "Contre la penetration europeenne.", explication: "Contre colonisation." },
+      { question: "Comment les francais ont vaincu ?", reponse: "Par la ruse et des moyens enormes.", explication: "Strategie." }
     ],
     qcm: [
       {
@@ -1103,12 +1230,16 @@ const LECONS_DATA = [
         reponseCorrecte: "C",
         explication: "Ahmadou Cheikhou Tall est le fils d'El Hadj Omar Tall.",
       },
+    ,
+      { enonce: "But de la resistance", options: [{"lettre":"A","texte":"Agrandir"},{"lettre":"B","texte":"Contre penetration euro"},{"lettre":"C","texte":"Conquerir"},{"lettre":"D","texte":"Commercer"}], reponseCorrecte: "B", explication: "Contre colonisation." },
+      { enonce: "Francais ont use de", options: [{"lettre":"A","texte":"Force"},{"lettre":"B","texte":"Ruse"},{"lettre":"C","texte":"Diplomatie"},{"lettre":"D","texte":"Commerce"}], reponseCorrecte: "B", explication: "Ruse." }
     ],
   },
 
   // ══════════════════════════════════════════════════════════
   // LEÇON 17 : EL HADJI OMAR TALL
   // ══════════════════════════════════════════════════════════
+,
   {
     ordre: 17,
     titre: "El Hadji Omar Tall",
@@ -1150,6 +1281,13 @@ const LECONS_DATA = [
       { question: "Quelle ville El Hadji Omar a-t-il fondée ?", reponse: "El Hadji Omar a fondé la ville de Dinguiraye.", explication: "Dinguiraye devint la base de son empire musulman en Afrique de l'Ouest." },
       { question: "Quel gouverneur français a affronté El Hadji Omar ?", reponse: "El Hadji Omar a affronté le gouverneur Faidherbe à Médine (1857) et à Matam (1859).", explication: "Faidherbe était le gouverneur du Sénégal qui cherchait à stopper l'expansion de l'empire d'Omar Tall." },
       { question: "Comment El Hadji Omar a-t-il disparu et où ?", reponse: "El Hadji Omar a disparu dans des conditions mystérieuses dans les grottes de Bandiagara en 1864.", explication: "Sa disparition reste une grande énigme de l'histoire de l'Afrique de l'Ouest." },
+    ,
+      { question: "Ou est ne El Hadji Omar ?", reponse: "A Halwar pres de Podor.", explication: "Naissance." },
+      { question: "Qu'a-t-il fait en 1827 ?", reponse: "Pelerinage a la Mecque. Titre El Hadji.", explication: "Pelerinage." },
+      { question: "Quelle ville a-t-il fondee ?", reponse: "Dinguiraye.", explication: "Fondee." },
+      { question: "Ou a-t-il affronte Faidherbe ?", reponse: "Medine 1857, Matam 1859.", explication: "Batailles." },
+      { question: "Ou a-t-il disparu ?", reponse: "Grottes de Bandiagara en 1864.", explication: "Disparition." },
+      { question: "Appartenait a la lignee ?", reponse: "Des Torobe.", explication: "Lignee." }
     ],
     qcm: [
       {
@@ -1207,12 +1345,19 @@ const LECONS_DATA = [
         reponseCorrecte: "A",
         explication: "El Hadji Omar Tall appartenait à la prestigieuse lignée des Torobé.",
       },
+    ,
+      { enonce: "El Hadji Omar ne a", options: [{"lettre":"A","texte":"Dinguiraye"},{"lettre":"B","texte":"Halwar"},{"lettre":"C","texte":"Tivaouane"},{"lettre":"D","texte":"Touba"}], reponseCorrecte: "B", explication: "Halwar." },
+      { enonce: "Il a fonde", options: [{"lettre":"A","texte":"Touba"},{"lettre":"B","texte":"Dinguiraye"},{"lettre":"C","texte":"Tivaouane"},{"lettre":"D","texte":"Nioro"}], reponseCorrecte: "B", explication: "Dinguiraye." },
+      { enonce: "Affronte Faidherbe a", options: [{"lettre":"A","texte":"Dakar"},{"lettre":"B","texte":"Medine 1857"},{"lettre":"C","texte":"St-Louis"},{"lettre":"D","texte":"Bandiagara"}], reponseCorrecte: "B", explication: "Medine 1857." },
+      { enonce: "Disparu a Bandiagara en", options: [{"lettre":"A","texte":"1857"},{"lettre":"B","texte":"1859"},{"lettre":"C","texte":"1864"},{"lettre":"D","texte":"1890"}], reponseCorrecte: "C", explication: "1864." },
+      { enonce: "Lignee des", options: [{"lettre":"A","texte":"Torobe"},{"lettre":"B","texte":"Denianke"},{"lettre":"C","texte":"Mouride"},{"lettre":"D","texte":"Tidjane"}], reponseCorrecte: "A", explication: "Torobe." }
     ],
   },
 
   // ══════════════════════════════════════════════════════════
   // LEÇON 18 : LAT DIOR NGONÉ LATYR DIOP
   // ══════════════════════════════════════════════════════════
+,
   {
     ordre: 18,
     titre: "Lat Dior Ngoné Latyr Diop",
@@ -1253,6 +1398,12 @@ const LECONS_DATA = [
       { question: "Contre quoi Lat Dior s'est-il farouchement opposé ?", reponse: "Lat Dior s'est farouchement opposé à la construction du chemin de fer Dakar — Saint-Louis.", explication: "Il voyait ce chemin de fer comme un symbole de l'occupation française de son territoire." },
       { question: "Qui a converti Lat Dior à l'Islam ?", reponse: "Maba Diakhou Ba, l'Almamy du Rip, a converti Lat Dior à l'Islam.", explication: "Lat Dior s'est réfugié chez Maba Diakhou Ba lors de son premier exil en 1864." },
       { question: "Où et quand Lat Dior est-il mort ?", reponse: "Lat Dior est mort à Dékheulé le 25 Octobre 1886, tué par une colonne de spahis commandée par le capitaine Valois.", explication: "Il est mort en héros, défendant son royaume jusqu'au bout." },
+    ,
+      { question: "Ou est ne Lat Dior ?", reponse: "A Keur Amadou Yalla vers 1842.", explication: "Naissance." },
+      { question: "Elu Damel en ?", reponse: "1862.", explication: "Damel." },
+      { question: "Converti a l'Islam par ?", reponse: "Maba Diakhou Ba (Almamy du Rip).", explication: "Conversion." },
+      { question: "Opposition au ?", reponse: "Chemin de fer Dakar-St-Louis.", explication: "Chemin de fer." },
+      { question: "Mort ou et quand ?", reponse: "A Dékheulé le 25 octobre 1886.", explication: "Mort." }
     ],
     qcm: [
       {
@@ -1310,12 +1461,19 @@ const LECONS_DATA = [
         reponseCorrecte: "D",
         explication: "La colonne de spahis qui a tué Lat Dior était commandée par le capitaine Valois.",
       },
+    ,
+      { enonce: "Lat Dior ne en", options: [{"lettre":"A","texte":"1800"},{"lettre":"B","texte":"1842"},{"lettre":"C","texte":"1862"},{"lettre":"D","texte":"1886"}], reponseCorrecte: "B", explication: "1842." },
+      { enonce: "Elu Damel en", options: [{"lettre":"A","texte":"1842"},{"lettre":"B","texte":"1862"},{"lettre":"C","texte":"1871"},{"lettre":"D","texte":"1886"}], reponseCorrecte: "B", explication: "1862." },
+      { enonce: "Oppose au chemin de fer", options: [{"lettre":"A","texte":"Thiès-Louga"},{"lettre":"B","texte":"Dakar-St-Louis"},{"lettre":"C","texte":"Dakar-Thiès"},{"lettre":"D","texte":"St-Louis-Louga"}], reponseCorrecte: "B", explication: "Dakar-St-Louis." },
+      { enonce: "Mort a Dékheulé le", options: [{"lettre":"A","texte":"25 oct 1886"},{"lettre":"B","texte":"25 oct 1890"},{"lettre":"C","texte":"15 oct 1886"},{"lettre":"D","texte":"25 dec 1886"}], reponseCorrecte: "A", explication: "25 oct 1886." },
+      { enonce: "Converti par", options: [{"lettre":"A","texte":"Omar Tall"},{"lettre":"B","texte":"Maba Diakhou Ba"},{"lettre":"C","texte":"Alboury"},{"lettre":"D","texte":"Ahmadou"}], reponseCorrecte: "B", explication: "Maba Diakhou." }
     ],
   },
 
   // ══════════════════════════════════════════════════════════
   // LEÇON 19 : ALBOURY NDIAYE
   // ══════════════════════════════════════════════════════════
+,
   {
     ordre: 19,
     titre: "Alboury Ndiaye",
@@ -1355,6 +1513,11 @@ const LECONS_DATA = [
       { question: "Contre qui Alboury Ndiaye est-il entré en guerre ouverte en 1890 ?", reponse: "En 1890, Alboury Ndiaye entra en guerre ouverte contre les Français dirigés par le commandant Dodds.", explication: "Cette guerre marqua la fin du règne d'Alboury au Djolof." },
       { question: "Quelle bataille Alboury Ndiaye a-t-il couverte glorieusement ?", reponse: "Alboury Ndiaye couvrit glorieusement la retraite à la bataille de Kolomina.", explication: "Cette bataille montra le grand courage d'Alboury face à l'armée française." },
       { question: "Où et quand Alboury Ndiaye est-il mort ?", reponse: "Alboury Ndiaye est mort près de Dogon-Douchi au Niger en 1902, en exil.", explication: "Il mourut loin de sa terre natale, le Sénégal, où il n'a jamais pu retourner." },
+    ,
+      { question: "Qui etait Alboury Ndiaye ?", reponse: "Bourba du Djolof (1875-1890).", explication: "Dernier Bourba." },
+      { question: "Protectorat accepte en ?", reponse: "1885.", explication: "1885." },
+      { question: "Guerre contre francais en ?", reponse: "1890, commandant Dodds.", explication: "1890." },
+      { question: "Ou est-il mort ?", reponse: "Pres de Dogon-Douchi au Niger en 1902.", explication: "Exil." }
     ],
     qcm: [
       {
@@ -1412,12 +1575,19 @@ const LECONS_DATA = [
         reponseCorrecte: "B",
         explication: "Le protectorat est la protection exercée par un pays puissant sur un pays plus faible, qui perd sa liberté.",
       },
+    ,
+      { enonce: "Alboury Bourba de", options: [{"lettre":"A","texte":"1842-1886"},{"lettre":"B","texte":"1875-1890"},{"lettre":"C","texte":"1862-1871"},{"lettre":"D","texte":"1890-1902"}], reponseCorrecte: "B", explication: "1875-1890." },
+      { enonce: "Protectorat en", options: [{"lettre":"A","texte":"1875"},{"lettre":"B","texte":"1885"},{"lettre":"C","texte":"1890"},{"lettre":"D","texte":"1902"}], reponseCorrecte: "B", explication: "1885." },
+      { enonce: "Mort pres de", options: [{"lettre":"A","texte":"Bandiagara"},{"lettre":"B","texte":"Dogon-Douchi"},{"lettre":"C","texte":"Ségou"},{"lettre":"D","texte":"Kolomina"}], reponseCorrecte: "B", explication: "Dogon-Douchi." },
+      { enonce: "Contre commandant", options: [{"lettre":"A","texte":"Faidherbe"},{"lettre":"B","texte":"Dodds"},{"lettre":"C","texte":"Archinard"},{"lettre":"D","texte":"Valois"}], reponseCorrecte: "B", explication: "Dodds." },
+      { enonce: "Mort en", options: [{"lettre":"A","texte":"1886"},{"lettre":"B","texte":"1890"},{"lettre":"C","texte":"1902"},{"lettre":"D","texte":"1927"}], reponseCorrecte: "C", explication: "1902." }
     ],
   },
 
   // ══════════════════════════════════════════════════════════
   // LEÇON 20 : AHMADOU CHEIKHOU TALL
   // ══════════════════════════════════════════════════════════
+,
   {
     ordre: 20,
     titre: "Ahmadou Cheikhou Tall",
@@ -1452,6 +1622,12 @@ const LECONS_DATA = [
       { question: "Comment les Français ont-ils essayé d'affaiblir Ahmadou ?", reponse: "Les Français lui opposèrent Mamadou Lamine Dramé pour le diviser et l'affaiblir.", explication: "La stratégie de division entre chefs africains était une méthode courante des colonisateurs." },
       { question: "Qui a attaqué Ségou en 1890 ?", reponse: "Le colonel Archinard a attaqué Ségou en 1890 et pris la capitale.", explication: "Cette défaite marqua la fin du pouvoir d'Ahmadou Cheikhou Tall." },
       { question: "Comment Ahmadou Cheikhou Tall est-il mort ?", reponse: "Ahmadou Cheikhou Tall mourut libre en pays Haoussa, bien que dépouillé de presque tous ses territoires.", explication: "Même vaincu militairement, il est mort en homme libre, jamais capturé par les Français." },
+    ,
+      { question: "Qui etait Ahmadou Cheikhou ?", reponse: "Fils d'El Hadji Omar, grand marabout Tidjane.", explication: "Fils." },
+      { question: "Oppose par les francais a ?", reponse: "Mamadou Lamine Dramé.", explication: "Opposant." },
+      { question: "Attaque a Ségou en ?", reponse: "1890 par colonel Archinard.", explication: "Ségou." },
+      { question: "Ou est-il mort ?", reponse: "En pays Haoussa, libre.", explication: "Mort libre." },
+      { question: "Qui lui succeda ?", reponse: "Il succeda a son pere El Hadji Omar.", explication: "Successeur." }
     ],
     qcm: [
       {
@@ -1509,8 +1685,15 @@ const LECONS_DATA = [
         reponseCorrecte: "C",
         explication: "Ahmadou Cheikhou Tall mourut libre en pays Haoussa, jamais capturé par les Français.",
       },
+    ,
+      { enonce: "Ahmadou = fils de", options: [{"lettre":"A","texte":"Lat Dior"},{"lettre":"B","texte":"El Hadji Omar"},{"lettre":"C","texte":"Alboury"},{"lettre":"D","texte":"Maba"}], reponseCorrecte: "B", explication: "Fils d'Omar." },
+      { enonce: "Oppose par francais a", options: [{"lettre":"A","texte":"Samory"},{"lettre":"B","texte":"Mamadou Lamine"},{"lettre":"C","texte":"Behanzin"},{"lettre":"D","texte":"Rabah"}], reponseCorrecte: "B", explication: "Mamadou Lamine." },
+      { enonce: "Attaque a Ségou par", options: [{"lettre":"A","texte":"Faidherbe"},{"lettre":"B","texte":"Dodds"},{"lettre":"C","texte":"Archinard"},{"lettre":"D","texte":"Valois"}], reponseCorrecte: "C", explication: "Archinard." },
+      { enonce: "Ségou prise en", options: [{"lettre":"A","texte":"1857"},{"lettre":"B","texte":"1864"},{"lettre":"C","texte":"1890"},{"lettre":"D","texte":"1902"}], reponseCorrecte: "C", explication: "1890." },
+      { enonce: "Mort en pays", options: [{"lettre":"A","texte":"Peul"},{"lettre":"B","texte":"Haoussa"},{"lettre":"C","texte":"Bambara"},{"lettre":"D","texte":"Toucouleur"}], reponseCorrecte: "B", explication: "Haoussa." }
     ],
   },
+
 
 ]; // fin LECONS_DATA
 
