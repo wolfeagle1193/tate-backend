@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programme Anglais – Taté</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f8f6f0; color: #2d2a24; line-height: 1.6; }
+  .page { max-width: 800px; margin: 40px auto; background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.08); }
+  .header { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); color: white; padding: 50px 40px; text-align: center; }
+  .header h1 { font-size: 2.2em; margin-bottom: 8px; letter-spacing: -0.5px; }
+  .header .tag { display: inline-block; background: #e94560; color: white; padding: 4px 16px; border-radius: 20px; font-size: 0.85em; font-weight: 600; margin-top: 10px; }
+  .header p { opacity: 0.85; margin-top: 8px; }
+  .body { padding: 40px; }
+  .section { margin-bottom: 35px; }
+  .section h2 { font-size: 1.3em; color: #0f3460; border-left: 4px solid #e94560; padding-left: 12px; margin-bottom: 16px; }
+  .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 25px; }
+  .info-card { background: #f8f6f0; border-radius: 12px; padding: 16px; }
+  .info-card .label { font-size: 0.75em; text-transform: uppercase; letter-spacing: 1px; color: #888; }
+  .info-card .value { font-size: 1.05em; font-weight: 600; color: #0f3460; margin-top: 4px; }
+  .info-card .price { font-size: 1.5em; font-weight: 700; color: #e94560; }
+  .week { margin-bottom: 30px; }
+  .week h3 { background: #f8f6f0; padding: 10px 16px; border-radius: 10px; font-size: 1em; color: #0f3460; margin-bottom: 14px; }
+  .session { border: 1px solid #eee; border-radius: 12px; padding: 16px; margin-bottom: 12px; }
+  .session .num { display: inline-block; background: #0f3460; color: white; width: 28px; height: 28px; border-radius: 50%; text-align: center; line-height: 28px; font-size: 0.8em; font-weight: 700; margin-right: 10px; }
+  .session .title { font-weight: 600; font-size: 1em; }
+  .session .items { margin-top: 8px; font-size: 0.9em; color: #555; }
+  .session .items span { display: block; margin-bottom: 3px; }
+  .table-ref { width: 100%; border-collapse: collapse; margin-top: 10px; }
+  .table-ref th { background: #0f3460; color: white; padding: 10px 14px; text-align: left; font-size: 0.85em; }
+  .table-ref td { padding: 10px 14px; border-bottom: 1px solid #eee; font-size: 0.9em; }
+  .table-ref tr:nth-child(even) td { background: #faf8f5; }
+  .badge { display: inline-block; background: #e94560; color: white; font-size: 0.7em; padding: 2px 10px; border-radius: 12px; margin-left: 8px; font-weight: 600; }
+  .footer { border-top: 1px solid #eee; padding: 30px 40px; text-align: center; color: #888; font-size: 0.85em; }
+  .cta { display: inline-block; background: #e94560; color: white; padding: 12px 32px; border-radius: 30px; text-decoration: none; font-weight: 600; margin-top: 10px; }
+  .sign-line { margin-top: 30px; display: flex; gap: 40px; justify-content: center; }
+  .sign-line div { text-align: center; }
+  .sign-line .line { width: 200px; border-bottom: 2px solid #ccc; margin-top: 8px; }
+  .sign-line .lbl { font-size: 0.8em; color: #888; margin-top: 4px; }
+  @media (max-width: 600px) { .info-grid { grid-template-columns: 1fr; } .page { margin: 10px; } }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <h1>📘 Programme d'Anglais</h1>
+    <p>Anglais pratique — Conversations de la vie réelle</p>
+    <span class="tag">🏆 Taté — L'éducation intelligente</span>
+  </div>
+
+  <div class="body">
+
+    <!-- INFOS -->
+    <div class="section">
+      <h2>📋 Récapitulatif</h2>
+      <div class="info-grid">
+        <div class="info-card">
+          <div class="label">Durée</div>
+          <div class="value">3 semaines</div>
+        </div>
+        <div class="info-card">
+          <div class="label">Séances</div>
+          <div class="value">9 séances (3 / semaine)</div>
+        </div>
+        <div class="info-card">
+          <div class="label">Durée / séance</div>
+          <div class="value">1h30</div>
+        </div>
+        <div class="info-card">
+          <div class="label">Investissement</div>
+          <div class="value price">30 000 FCFA</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEMAINE 1 -->
+    <div class="week">
+      <h3>📅 Semaine 1 — Se présenter et se débrouiller</h3>
+
+      <div class="session">
+        <div><span class="num">1</span><span class="title">Se présenter</span></div>
+        <div class="items">
+          <span>📹 Vidéo : « Introducing yourself »</span>
+          <span>📖 Grammaire : Verbe TO BE (I am, You are, He/She is)</span>
+          <span>💬 Pratique : Parler de soi (nom, métier, ville, passions)</span>
+          <span>🎭 Situation : Faire connaissance avec un collègue étranger</span>
+        </div>
+      </div>
+
+      <div class="session">
+        <div><span class="num">2</span><span class="title">La vie quotidienne</span></div>
+        <div class="items">
+          <span>📹 Vidéo : « My daily routine »</span>
+          <span>📖 Grammaire : Present Simple — DO / DOES pour les questions</span>
+          <span>💬 Pratique : Raconter sa journée (travail, repas, loisirs)</span>
+          <span>🎭 Situation : Parler de son week-end</span>
+        </div>
+      </div>
+
+      <div class="session">
+        <div><span class="num">3</span><span class="title">Au restaurant / Dans les magasins</span></div>
+        <div class="items">
+          <span>📹 Vidéo : « Ordering food at a restaurant »</span>
+          <span>📖 Grammaire : Present Continuous (I am eating) — CAN (je peux)</span>
+          <span>💬 Pratique : Commander un repas, acheter au marché</span>
+          <span>🎭 Situation : Dialogue au restaurant</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEMAINE 2 -->
+    <div class="week">
+      <h3>📅 Semaine 2 — Au travail et en déplacement</h3>
+
+      <div class="session">
+        <div><span class="num">4</span><span class="title">Au téléphone et au travail</span></div>
+        <div class="items">
+          <span>📹 Vidéo : « Business phone call in English »</span>
+          <span>📖 Grammaire : Simple Past (I worked, I called)</span>
+          <span>💬 Pratique : Répondre au téléphone, prendre un message</span>
+          <span>🎭 Situation : Appel professionnel simulé</span>
+        </div>
+      </div>
+
+      <div class="session">
+        <div><span class="num">5</span><span class="title">Se déplacer et voyager</span></div>
+        <div class="items">
+          <span>📹 Vidéo : « At the airport — Asking for directions »</span>
+          <span>📖 Grammaire : Futur (WILL) — MUST (obligation)</span>
+          <span>💬 Pratique : Taxi, demander son chemin, à l'hôtel</span>
+          <span>🎭 Situation : Arriver dans une nouvelle ville</span>
+        </div>
+      </div>
+
+      <div class="session">
+        <div><span class="num">6</span><span class="title">Chez le médecin / À la pharmacie</span></div>
+        <div class="items">
+          <span>📹 Vidéo : « Going to the doctor in English »</span>
+          <span>📖 Grammaire : Present Perfect (I have a fever)</span>
+          <span>💬 Pratique : Décrire ses symptômes, acheter des médicaments</span>
+          <span>🎭 Situation : Urgence médicale</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEMAINE 3 -->
+    <div class="week">
+      <h3>📅 Semaine 3 — Autonomie et confiance</h3>
+
+      <div class="session">
+        <div><span class="num">7</span><span class="title">Vie sociale</span></div>
+        <div class="items">
+          <span>📹 Vidéo : « Making plans with friends »</span>
+          <span>📖 Grammaire : MAY / MIGHT (possibilité) — WOULD (poli)</span>
+          <span>💬 Pratique : Inviter, accepter, refuser poliment</span>
+          <span>🎭 Situation : Organiser un dîner ou une sortie</span>
+        </div>
+      </div>
+
+      <div class="session">
+        <div><span class="num">8</span><span class="title">Résoudre un problème</span></div>
+        <div class="items">
+          <span>📹 Vidéo : « Making a complaint in a store »</span>
+          <span>📖 Grammaire : Question words (What, Where, When, Why, How)</span>
+          <span>💬 Pratique : Demander un remboursement, signaler un problème</span>
+          <span>🎭 Situation : Problème à l'hôtel / Colis perdu</span>
+        </div>
+      </div>
+
+      <div class="session">
+        <div><span class="num">9</span><span class="title">Bilan final</span></div>
+        <div class="items">
+          <span>📹 Vidéo : Au choix parmi les 8 vues</span>
+          <span>📖 Grammaire : Révision rapide de tous les temps</span>
+          <span>🎤 Grand oral : 15 minutes de conversation continue</span>
+          <span>📋 Bilan des progrès + plan pour la suite</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- TABLEAU GRAMMAIRE -->
+    <div class="section">
+      <h2>📚 Les temps essentiels</h2>
+      <table class="table-ref">
+        <tr><th>Temps</th><th>Usage</th><th>Exemple</th></tr>
+        <tr><td><strong>Present Simple</strong></td><td>Habitudes, faits</td><td>I work every day</td></tr>
+        <tr><td><strong>Present Continuous</strong></td><td>En ce moment</td><td>I am working</td></tr>
+        <tr><td><strong>Simple Past</strong></td><td>Passé terminé</td><td>I worked yesterday</td></tr>
+        <tr><td><strong>Present Perfect</strong></td><td>Expérience</td><td>I have worked there</td></tr>
+        <tr><td><strong>Future (Will)</strong></td><td>Projets</td><td>I will call you</td></tr>
+      </table>
+
+      <h2 style="margin-top: 24px;">🔧 Les auxiliaires modaux</h2>
+      <table class="table-ref">
+        <tr><th>Auxiliaire</th><th>Usage</th><th>Exemple</th></tr>
+        <tr><td><strong>CAN</strong></td><td>Capacité</td><td>I can speak English</td></tr>
+        <tr><td><strong>MAY</strong></td><td>Permission / Possibilité</td><td>May I come in ?</td></tr>
+        <tr><td><strong>MUST</strong></td><td>Obligation</td><td>You must study</td></tr>
+        <tr><td><strong>WILL</strong></td><td>Futur</td><td>She will arrive tomorrow</td></tr>
+        <tr><td><strong>WOULD</strong></td><td>Poli / Conditionnel</td><td>I would like a coffee</td></tr>
+      </table>
+    </div>
+
+    <!-- SIGNATURES -->
+    <div class="section" style="margin-top: 40px;">
+      <h2>📜 Engagement</h2>
+      <p style="margin-bottom: 20px; color: #555;">Ce programme débutera après signature du présent contrat et réception du paiement.</p>
+      <div class="sign-line">
+        <div>
+          <div style="font-weight: 600;">L'étudiante</div>
+          <div class="line"></div>
+          <div class="lbl">Nom + signature</div>
+        </div>
+        <div>
+          <div style="font-weight: 600;">Le formateur</div>
+          <div class="line"></div>
+          <div class="lbl">Honoré K. — Taté</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <strong>🏆 Taté</strong> — L'éducation intelligente<br>
+    <small>Sénégal 🇸🇳</small>
+  </div>
+
+</div>
+
+</body>
+</html>
