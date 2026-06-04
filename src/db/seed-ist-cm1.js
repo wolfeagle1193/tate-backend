@@ -205,6 +205,122 @@ const LECONS_DATA = [
   {enonce:"Sucre et sel = ?",options:[{lettre:"A",texte:"Solvants"},{lettre:"B",texte:"Solubles"},{lettre:"C",texte:"Insolubles"},{lettre:"D",texte:"Gaz"}],reponseCorrecte:"B",explication:"Solubles."},
   {enonce:"Eau dissout...",options:[{lettre:"A",texte:"Tout"},{lettre:"B",texte:"Certains corps"},{lettre:"C",texte:"Rien"},{lettre:"D",texte:"Les gaz"}],reponseCorrecte:"B",explication:"Certains."},
 ]}
+,
+{ordre:16,titre:"L'Air",objectif:"Connaître la composition et les propriétés de l'air",promptSupplement:"Exemples concrets. CM1.",contenuHTML:`<h1>💨 Leçon 16 : L'Air</h1><div class="bloc-essentiel"><p>L'air est un <mark>gaz invisible</mark> formé d'<strong>oxygène</strong> et d'<strong>azote</strong>, avec un peu de gaz carbonique et de vapeur d'eau.</p></div><h2>🔵 Propriétés</h2><ul><li>Fluide, expansible, compressible, élastique</li><li>Il freine la chute des corps</li><li><strong>Pesant :</strong> 1 litre d'air pèse <mark>1,3 grammes</mark></li></ul><h2>💨 Le Vent</h2><p>Le <strong>vent</strong> est de l'air en mouvement.</p><h2>🌍 L'Atmosphère</h2><p>L'<strong>atmosphère</strong> est l'épaisse couche d'air qui entoure la Terre. Elle permet aux êtres vivants de <mark>respirer</mark> et maintient les oiseaux et les avions dans le ciel.</p><div class="bloc-attention"><strong>📌</strong> L'air est invisible mais il existe partout autour de nous. Sans air, il n'y aurait pas de vie sur Terre.</div><h2>📝 Résumé</h2><ul><li>Air = oxygène + azote + CO2 + vapeur d'eau</li><li>Propriétés : fluide, compressible, élastique</li><li>1L d'air = 1,3g. Vent = air en mouvement.</li></ul>`,exercices:[
+  {question:"De quoi est composé l'air ?",reponse:"Oxygène + azote + un peu de CO2 et vapeur d'eau.",explication:"Mélange de gaz."},
+  {question:"Cite 3 propriétés de l'air.",reponse:"Fluide, compressible, élastique.",explication:"4 propriétés."},
+  {question:"Qu'est-ce que le vent ?",reponse:"De l'air en mouvement.",explication:"Déplacement d'air."},
+  {question:"Combien pèse 1 litre d'air ?",reponse:"1,3 grammes.",explication:"L'air a un poids."},
+  {question:"Qu'est-ce que l'atmosphère ?",reponse:"Couche d'air autour de la Terre.",explication:"Protège la Terre."},
+  {question:"À quoi sert l'air pour les êtres vivants ?",reponse:"À respirer (grâce à l'oxygène).",explication:"Vital."},
+  {question:"Pourquoi les avions volent-ils ?",reponse:"L'air les maintient en vol (portance).",explication:"Propriété de l'air."},
+  {question:"L'air est-il visible ?",reponse:"Non, il est invisible.",explication:"Gaz transparent."},
+  {question:"L'air freine-t-il les corps qui tombent ?",reponse:"Oui, il freine leur chute.",explication:"Résistance de l'air."},
+  {question:"Que devient l'air quand il est chauffé ?",reponse:"Il se dilate et monte.",explication:"Air chaud = léger."},
+],qcm:[
+  {enonce:"L'air est composé...",options:[{lettre:"A",texte:"d'oxygène et d'azote"},{lettre:"B",texte:"d'eau et de sel"},{lettre:"C",texte:"de sable"},{lettre:"D",texte:"de fer"}],reponseCorrecte:"A",explication:"O2 + N2."},
+  {enonce:"L'air est...",options:[{lettre:"A",texte:"un gaz invisible"},{lettre:"B",texte:"un liquide"},{lettre:"C",texte:"un solide"},{lettre:"D",texte:"un métal"}],reponseCorrecte:"A",explication:"Gaz."},
+  {enonce:"1 litre d'air pèse...",options:[{lettre:"A",texte:"0g"},{lettre:"B",texte:"1,3g"},{lettre:"C",texte:"10g"},{lettre:"D",texte:"100g"}],reponseCorrecte:"B",explication:"1,3g."},
+  {enonce:"Le vent est...",options:[{lettre:"A",texte:"un gaz froid"},{lettre:"B",texte:"de l'air en mouvement"},{lettre:"C",texte:"de l'eau"},{lettre:"D",texte:"un nuage"}],reponseCorrecte:"B",explication:"Air qui bouge."},
+  {enonce:"L'atmosphère est...",options:[{lettre:"A",texte:"de l'eau"},{lettre:"B",texte:"de l'air"},{lettre:"C",texte:"le soleil"},{lettre:"D",texte:"la lune"}],reponseCorrecte:"B",explication:"Air terrestre."},
+  {enonce:"L'air permet de...",options:[{lettre:"A",texte:"manger"},{lettre:"B",texte:"respirer"},{lettre:"C",texte:"dormir"},{lettre:"D",texte:"courir"}],reponseCorrecte:"B",explication:"Respiration."},
+  {enonce:"L'air est...",options:[{lettre:"A",texte:"pesant (a un poids)"},{lettre:"B",texte:"léger (sans poids)"},{lettre:"C",texte:"lourd"},{lettre:"D",texte:"immobile"}],reponseCorrecte:"A",explication:"1,3g/L."},
+  {enonce:"L'air freine...",options:[{lettre:"A",texte:"les oiseaux"},{lettre:"B",texte:"la chute des corps"},{lettre:"C",texte:"le vent"},{lettre:"D",texte:"les nuages"}],reponseCorrecte:"B",explication:"Résistance."},
+  {enonce:"L'air est...",options:[{lettre:"A",texte:"compressible"},{lettre:"B",texte:"incompressible"},{lettre:"C",texte:"mou"},{lettre:"D",texte:"dur"}],reponseCorrecte:"A",explication:"Se comprime."},
+  {enonce:"Où trouve-t-on de l'air ?",options:[{lettre:"A",texte:"partout"},{lettre:"B",texte:"sous l'eau"},{lettre:"C",texte:"dans le sol"},{lettre:"D",texte:"nulle part"}],reponseCorrecte:"A",explication:"Partout."},
+]},
+{ordre:17,titre:"La Pression Atmosphérique",objectif:"Comprendre la pression atmosphérique et ses applications",promptSupplement:"Siphon, seringue. CM1.",contenuHTML:`<h1>📏 Leçon 17 : La Pression Atmosphérique</h1><div class="bloc-essentiel"><p>La <strong>pression atmosphérique</strong> est la <mark>force que l'air exerce</mark> sur tous les corps qu'il entoure. Elle s'exerce dans tous les sens.</p></div><h2>🔄 Applications</h2><p>Fonctionnent grâce à la pression atmosphérique :</p><ul><li>Le <strong>siphon</strong></li><li>La <strong>seringue</strong></li><li>Le <strong>compte-gouttes</strong></li><li>La <strong>pipette</strong></li></ul><h2>📊 Le Baromètre</h2><p>Le <strong>baromètre</strong> permet de mesurer la pression atmosphérique. Il en existe deux types :</p><ul><li>Le <strong>baromètre à mercure</strong></li><li>Le <strong>baromètre métallique</strong></li></ul><div class="bloc-attention"><strong>📌</strong> En montant en altitude, la pression atmosphérique diminue car il y a moins d'air au-dessus de nous.</div><h2>📝 Résumé</h2><ul><li>Pression atmosphérique = force de l'air</li><li>Appareils : siphon, seringue, compte-gouttes, pipette</li><li>Mesure : baromètre (mercure ou métallique)</li></ul>`,exercices:[
+  {question:"Qu'est-ce que la pression atmosphérique ?",reponse:"Force que l'air exerce sur les corps.",explication:"S'exerce dans tous les sens."},
+  {question:"Cite 4 appareils utilisant la pression atmosphérique.",reponse:"Siphon, seringue, compte-gouttes, pipette.",explication:"Fonctionnent par pression."},
+  {question:"Avec quoi mesure-t-on la pression atmosphérique ?",reponse:"Avec un baromètre.",explication:"Instrument de mesure."},
+  {question:"Cite 2 types de baromètres.",reponse:"Baromètre à mercure et baromètre métallique.",explication:"2 technologies."},
+  {question:"Comment fonctionne une seringue ?",reponse:"Elle aspire le liquide grâce à la pression atmosphérique.",explication:"La pression pousse le liquide."},
+  {question:"Pourquoi l'eau monte-t-elle dans un siphon ?",reponse:"Grâce à la différence de pression atmosphérique.",explication:"Pression."},
+  {question:"Comment fonctionne un compte-gouttes ?",reponse:"En relâchant la poire, la pression aspire le liquide.",explication:"Pression."},
+  {question:"Dans quel sens s'exerce la pression atmosphérique ?",reponse:"Dans tous les sens.",explication:"Omnidirectionnelle."},
+  {question:"Que se passe-t-il quand on monte en altitude ?",reponse:"La pression atmosphérique diminue.",explication:"Moins d'air au-dessus."},
+  {question:"À quoi sert un baromètre ?",reponse:"À prévoir le temps et mesurer les changements de pression.",explication:"Météo."},
+],qcm:[
+  {enonce:"Pression atmosphérique = ?",options:[{lettre:"A",texte:"force de l'eau"},{lettre:"B",texte:"force de l'air"},{lettre:"C",texte:"force du vent"},{lettre:"D",texte:"force du sol"}],reponseCorrecte:"B",explication:"Force de l'air."},
+  {enonce:"Le siphon utilise...",options:[{lettre:"A",texte:"la chaleur"},{lettre:"B",texte:"la pression atmosphérique"},{lettre:"C",texte:"le froid"},{lettre:"D",texte:"l'électricité"}],reponseCorrecte:"B",explication:"Pression."},
+  {enonce:"Le baromètre mesure...",options:[{lettre:"A",texte:"la température"},{lettre:"B",texte:"la pression"},{lettre:"C",texte:"le vent"},{lettre:"D",texte:"la pluie"}],reponseCorrecte:"B",explication:"Pression."},
+  {enonce:"Types de baromètres ?",options:[{lettre:"A",texte:"à eau/air"},{lettre:"B",texte:"à mercure/métallique"},{lettre:"C",texte:"à vent/pluie"},{lettre:"D",texte:"à gaz"}],reponseCorrecte:"B",explication:"Mercure/métal."},
+  {enonce:"La pression s'exerce...",options:[{lettre:"A",texte:"vers le haut"},{lettre:"B",texte:"vers le bas"},{lettre:"C",texte:"dans tous les sens"},{lettre:"D",texte:"de côté"}],reponseCorrecte:"C",explication:"Tous sens."},
+  {enonce:"En altitude, la pression...",options:[{lettre:"A",texte:"augmente"},{lettre:"B",texte:"diminue"},{lettre:"C",texte:"reste pareille"},{lettre:"D",texte:"disparaît"}],reponseCorrecte:"B",explication:"Moins d'air."},
+  {enonce:"La seringue utilise...",options:[{lettre:"A",texte:"la chaleur"},{lettre:"B",texte:"la pression"},{lettre:"C",texte:"le froid"},{lettre:"D",texte:"l'eau"}],reponseCorrecte:"B",explication:"Pression."},
+  {enonce:"Baromètre à mercure contient...",options:[{lettre:"A",texte:"de l'eau"},{lettre:"B",texte:"du mercure"},{lettre:"C",texte:"de l'air"},{lettre:"D",texte:"du sable"}],reponseCorrecte:"B",explication:"Mercure."},
+  {enonce:"Le compte-gouttes utilise...",options:[{lettre:"A",texte:"l'électricité"},{lettre:"B",texte:"la pression"},{lettre:"C",texte:"la chaleur"},{lettre:"D",texte:"le vent"}],reponseCorrecte:"B",explication:"Pression."},
+  {enonce:"En haut = air plus...",options:[{lettre:"A",texte:"dense"},{lettre:"B",texte:"rare"},{lettre:"C",texte:"lourd"},{lettre:"D",texte:"épais"}],reponseCorrecte:"B",explication:"Rare = moins de pression."},
+]},
+{ordre:18,titre:"La Dilatation et le Thermomètre",objectif:"Comprendre la dilatation des corps et le thermomètre",promptSupplement:"Exemples concrets. CM1.",contenuHTML:`<h1>🌡️ Leçon 18 : La Dilatation et le Thermomètre</h1><div class="bloc-essentiel"><p>La <strong>dilatation</strong> est l'<mark>augmentation du volume</mark> d'un corps sous l'action de la chaleur. En refroidissant, le corps chauffé reprend sa taille normale : c'est la <strong>contraction</strong>.</p></div><h2>🔬 Quels Corps se Dilatent ?</h2><p>Tous les corps se dilatent et se contractent :</p><ul><li>Les <strong>solides</strong> (ex: rails de train)</li><li>Les <strong>liquides</strong> (ex: mercure du thermomètre)</li><li>Les <strong>gaz</strong> (ex: air chauffé)</li></ul><h2>🌡️ Le Thermomètre</h2><p>Le <strong>thermomètre</strong> permet de mesurer la température. Il est composé d'une <mark>planchette graduée</mark> et d'un <mark>tube en verre</mark> contenant de l'alcool ou du mercure.</p><p>Quand il fait chaud, le mercure <strong>monte</strong> (dilatation). Quand il fait froid, le mercure <strong>descend</strong> (contraction).</p><div class="bloc-attention"><strong>📌</strong> Les rails de chemin de fer ont un espace entre eux pour permettre la dilatation sans déformation.</div><h2>📝 Résumé</h2><ul><li>Dilatation = volume + sous chaleur</li><li>Contraction = retour à la normale au froid</li><li>Tous les corps se dilatent</li><li>Thermomètre = mesure la température (mercure monte/descend)</li></ul>`,exercices:[
+  {question:"Qu'est-ce que la dilatation ?",reponse:"Augmentation du volume d'un corps sous la chaleur.",explication:"Se dilate en chauffant."},
+  {question:"Qu'est-ce que la contraction ?",reponse:"Retour à la taille normale en refroidissant.",explication:"Se contracte au froid."},
+  {question:"Quels corps se dilatent ?",reponse:"Solides, liquides et gaz.",explication:"Tous les corps."},
+  {question:"Qu'est-ce qu'un thermomètre ?",reponse:"Instrument qui mesure la température.",explication:"Mesure le chaud/froid."},
+  {question:"De quoi est composé un thermomètre ?",reponse:"Planchette graduée + tube en verre avec alcool ou mercure.",explication:"2 parties."},
+  {question:"Que fait le mercure quand il fait chaud ?",reponse:"Il monte dans le tube.",explication:"Dilatation du mercure."},
+  {question:"Que fait le mercure quand il fait froid ?",reponse:"Il descend dans le tube.",explication:"Contraction du mercure."},
+  {question:"Cite 2 types de thermomètres.",reponse:"Thermomètre médical, thermomètre d'ambiance.",explication:"Usages différents."},
+  {question:"Pourquoi le mercure monte-t-il quand il fait chaud ?",reponse:"Parce qu'il se dilate sous la chaleur.",explication:"Dilatation."},
+  {question:"Pourquoi les rails ont-ils un espace entre eux ?",reponse:"Pour permettre la dilatation sans déformation.",explication:"Évite les accidents."},
+],qcm:[
+  {enonce:"Dilatation = ?",options:[{lettre:"A",texte:"volume diminue"},{lettre:"B",texte:"volume augmente"},{lettre:"C",texte:"poids change"},{lettre:"D",texte:"couleur change"}],reponseCorrecte:"B",explication:"Volume +."},
+  {enonce:"Contraction = ?",options:[{lettre:"A",texte:"volume augmente"},{lettre:"B",texte:"volume diminue"},{lettre:"C",texte:"chaud"},{lettre:"D",texte:"rien"}],reponseCorrecte:"B",explication:"Volume -."},
+  {enonce:"Le thermomètre mesure...",options:[{lettre:"A",texte:"la pression"},{lettre:"B",texte:"la température"},{lettre:"C",texte:"le vent"},{lettre:"D",texte:"l'humidité"}],reponseCorrecte:"B",explication:"Température."},
+  {enonce:"Le thermomètre contient...",options:[{lettre:"A",texte:"de l'eau"},{lettre:"B",texte:"de l'alcool ou mercure"},{lettre:"C",texte:"du sable"},{lettre:"D",texte:"de l'air"}],reponseCorrecte:"B",explication:"Alcool/mercure."},
+  {enonce:"Mercure monte = ?",options:[{lettre:"A",texte:"froid"},{lettre:"B",texte:"chaud"},{lettre:"C",texte:"humide"},{lettre:"D",texte:"sec"}],reponseCorrecte:"B",explication:"Chaud."},
+  {enonce:"Quels corps se dilatent ?",options:[{lettre:"A",texte:"solides"},{lettre:"B",texte:"liquides"},{lettre:"C",texte:"gaz"},{lettre:"D",texte:"tous"}],reponseCorrecte:"D",explication:"Tous."},
+  {enonce:"Refroidir un corps = ?",options:[{lettre:"A",texte:"dilatation"},{lettre:"B",texte:"contraction"},{lettre:"C",texte:"rien"},{lettre:"D",texte:"fusion"}],reponseCorrecte:"B",explication:"Contraction."},
+  {enonce:"Chauffer = ?",options:[{lettre:"A",texte:"dilate"},{lettre:"B",texte:"contracte"},{lettre:"C",texte:"rien"},{lettre:"D",texte:"fond"}],reponseCorrecte:"A",explication:"Dilate."},
+  {enonce:"Espace rail = ?",options:[{lettre:"A",texte:"dilatation"},{lettre:"B",texte:"poids"},{lettre:"C",texte:"couleur"},{lettre:"D",texte:"bruit"}],reponseCorrecte:"A",explication:"Dilatation."},
+  {enonce:"Tous les corps...",options:[{lettre:"A",texte:"se dilatent"},{lettre:"B",texte:"ne se dilatent pas"},{lettre:"C",texte:"sont solides"},{lettre:"D",texte:"sont gazeux"}],reponseCorrecte:"A",explication:"Se dilatent."},
+]},
+{ordre:19,titre:"La Digestion",objectif:"Connaître l'appareil digestif et les étapes de la digestion",promptSupplement:"Alimentation. CM1.",contenuHTML:`<h1>🍽️ Leçon 19 : La Digestion</h1><div class="bloc-essentiel"><p>La <strong>digestion</strong> est la <mark>transformation des aliments</mark> dans le tube digestif pour les transformer en nutriments que le corps peut utiliser.</p></div><h2>🔬 L'Appareil Digestif</h2><p>L'appareil digestif de l'homme comprend <strong>5 parties</strong> :</p><ol><li>La <strong>bouche</strong> (mastication)</li><li>L'<strong>œsophage</strong> (descente des aliments)</li><li>L'<strong>estomac</strong> (brassage avec les sucs gastriques)</li><li>L'<strong>intestin grêle</strong> (absorption des nutriments)</li><li>Le <strong>gros intestin</strong> (absorption d'eau, évacuation)</li></ol><p>Les <strong>glandes digestives</strong> produisent des <mark>sucs</mark> qui transforment les aliments en bouillie puis en liquide.</p><h2>✅ Conseils pour Bien Digérer</h2><ul><li><strong>Bien mâcher</strong> les aliments</li><li>Manger des aliments <strong>sains</strong></li><li>À des <strong>heures régulières</strong></li><li><strong>Sans excès</strong></li></ul><div class="bloc-attention"><strong>📌</strong> La digestion commence dans la bouche par la mastication. Bien mâcher facilite le travail de l'estomac.</div><h2>📝 Résumé</h2><ul><li>5 organes : bouche, œsophage, estomac, intestin grêle, gros intestin</li><li>Les sucs digestifs transforment les aliments</li><li>Bien mâcher = bonne digestion</li></ul>`,exercices:[
+  {question:"Qu'est-ce que la digestion ?",reponse:"Transformation des aliments dans le tube digestif.",explication:"Processus de transformation."},
+  {question:"Cite les 5 parties de l'appareil digestif.",reponse:"Bouche, œsophage, estomac, intestin grêle, gros intestin.",explication:"5 organes."},
+  {question:"Rôle de la bouche ?",reponse:"Mâcher et broyer les aliments (mastication).",explication:"1ère étape."},
+  {question:"Rôle de l'œsophage ?",reponse:"Conduire les aliments vers l'estomac.",explication:"Tube de descente."},
+  {question:"Rôle de l'estomac ?",reponse:"Brasser les aliments avec les sucs gastriques.",explication:"Mixage."},
+  {question:"Rôle de l'intestin grêle ?",reponse:"Absorber les nutriments dans le sang.",explication:"Nourriture."},
+  {question:"Rôle du gros intestin ?",reponse:"Absorber l'eau et évacuer les déchets.",explication:"Dernière étape."},
+  {question:"Que produisent les glandes digestives ?",reponse:"Des sucs qui transforment les aliments.",explication:"Sucs digestifs."},
+  {question:"Comment bien digérer ?",reponse:"Bien mâcher, manger sain, heures régulières, sans excès.",explication:"4 conseils."},
+  {question:"Pourquoi bien mâcher ?",reponse:"Pour faciliter le travail de l'estomac.",explication:"Prédigestion."},
+],qcm:[
+  {enonce:"La digestion se fait...",options:[{lettre:"A",texte:"dans le cœur"},{lettre:"B",texte:"dans le tube digestif"},{lettre:"C",texte:"dans les poumons"},{lettre:"D",texte:"dans le cerveau"}],reponseCorrecte:"B",explication:"Tube digestif."},
+  {enonce:"Premier organe digestif ?",options:[{lettre:"A",texte:"Œsophage"},{lettre:"B",texte:"Bouche"},{lettre:"C",texte:"Estomac"},{lettre:"D",texte:"Intestin"}],reponseCorrecte:"B",explication:"Bouche."},
+  {enonce:"L'œsophage conduit à...",options:[{lettre:"A",texte:"la bouche"},{lettre:"B",texte:"l'estomac"},{lettre:"C",texte:"l'intestin"},{lettre:"D",texte:"le cœur"}],reponseCorrecte:"B",explication:"Estomac."},
+  {enonce:"L'estomac...",options:[{lettre:"A",texte:"absorbe l'eau"},{lettre:"B",texte:"brasse les aliments"},{lettre:"C",texte:"mâche"},{lettre:"D",texte:"évacue"}],reponseCorrecte:"B",explication:"Brassage."},
+  {enonce:"Les nutriments sont absorbés dans...",options:[{lettre:"A",texte:"l'estomac"},{lettre:"B",texte:"l'intestin grêle"},{lettre:"C",texte:"le gros intestin"},{lettre:"D",texte:"la bouche"}],reponseCorrecte:"B",explication:"Intestin grêle."},
+  {enonce:"L'eau est absorbée dans...",options:[{lettre:"A",texte:"l'estomac"},{lettre:"B",texte:"l'intestin grêle"},{lettre:"C",texte:"le gros intestin"},{lettre:"D",texte:"la bouche"}],reponseCorrecte:"C",explication:"Gros intestin."},
+  {enonce:"Les glandes produisent...",options:[{lettre:"A",texte:"du sang"},{lettre:"B",texte:"des sucs"},{lettre:"C",texte:"de l'air"},{lettre:"D",texte:"des os"}],reponseCorrecte:"B",explication:"Sucs."},
+  {enonce:"Parties digestives ?",options:[{lettre:"A",texte:"3"},{lettre:"B",texte:"4"},{lettre:"C",texte:"5"},{lettre:"D",texte:"6"}],reponseCorrecte:"C",explication:"5."},
+  {enonce:"Bien mâcher est un...",options:[{lettre:"A",texte:"conseil"},{lettre:"B",texte:"exercice"},{lettre:"C",texte:"jeu"},{lettre:"D",texte:"obligation"}],reponseCorrecte:"A",explication:"Conseil."},
+  {enonce:"L'alcool est mauvais pour...",options:[{lettre:"A",texte:"la digestion"},{lettre:"B",texte:"la vue"},{lettre:"C",texte:"l'ouïe"},{lettre:"D",texte:"la peau"}],reponseCorrecte:"A",explication:"Digestion."},
+]},
+{ordre:21,titre:"La Circulation du Sang",objectif:"Comprendre la composition du sang et la circulation sanguine",promptSupplement:"Explications simples. CM1.",contenuHTML:`<h1>❤️ Leçon 21 : La Circulation du Sang</h1><div class="bloc-essentiel"><p>Le sang contient du <strong>plasma</strong> (liquide clair), des <mark>globules rouges</mark> (qui donnent la couleur rouge) et des <mark>globules blancs</mark> (qui défendent le corps). Le corps humain contient environ <strong>5 litres</strong> de sang.</p></div><h2>🔄 La Circulation</h2><p>Le sang circule dans deux circuits :</p><ul><li><strong>Grande circulation :</strong> le sang va du cœur vers tous les organes du corps</li><li><strong>Petite circulation :</strong> le sang va du cœur vers les poumons pour prendre de l'oxygène</li></ul><h2>⚠️ Bonnes et Mauvaises Habitudes</h2><ul><li>❌ <strong>L'alcool</strong> et le <strong>tabac</strong> sont mauvais pour le cœur</li><li>✅ Le <strong>sport</strong> favorise la circulation du sang</li></ul><div class="bloc-attention"><strong>📌</strong> Quand on se coupe, le sang coagule et forme un caillot qui arrête le saignement. Le sang coagulé contient un liquide clair (sérum) et une masse rouge brun (caillot).</div><h2>📝 Résumé</h2><ul><li>Sang = plasma + globules rouges + globules blancs (~5L)</li><li>Grande circulation : cœur → organes</li><li>Petite circulation : cœur → poumons</li><li>Alcool et tabac = mauvais. Sport = bon</li></ul>`,exercices:[
+  {question:"Que contient le sang ?",reponse:"Plasma, globules rouges et globules blancs.",explication:"3 composants."},
+  {question:"Combien de litres de sang dans le corps ?",reponse:"Environ 5 litres.",explication:"Quantité moyenne."},
+  {question:"Qu'est-ce que la grande circulation ?",reponse:"Le sang va du cœur vers tous les organes.",explication:"Cœur → organes."},
+  {question:"Qu'est-ce que la petite circulation ?",reponse:"Le sang va du cœur vers les poumons.",explication:"Cœur → poumons."},
+  {question:"Rôle des globules rouges ?",reponse:"Donner la couleur rouge au sang.",explication:"Couleur."},
+  {question:"Rôle des globules blancs ?",reponse:"Défendre le corps contre les microbes.",explication:"Immunité."},
+  {question:"Qu'est-ce que le plasma ?",reponse:"Le liquide clair du sang.",explication:"Partie liquide."},
+  {question:"Qu'est-ce qu'un caillot ?",reponse:"Du sang coagulé qui arrête les saignements.",explication:"Coagulation."},
+  {question:"Qu'est-ce qui est mauvais pour le cœur ?",reponse:"L'alcool et le tabac.",explication:"Nuisibles."},
+  {question:"Qu'est-ce qui favorise la circulation ?",reponse:"Le sport.",explication:"Activation du sang."},
+],qcm:[
+  {enonce:"Litres de sang ?",options:[{lettre:"A",texte:"2L"},{lettre:"B",texte:"3L"},{lettre:"C",texte:"5L"},{lettre:"D",texte:"10L"}],reponseCorrecte:"C",explication:"5L."},
+  {enonce:"Le plasma est...",options:[{lettre:"A",texte:"un liquide clair"},{lettre:"B",texte:"un gaz"},{lettre:"C",texte:"un solide"},{lettre:"D",texte:"une cellule"}],reponseCorrecte:"A",explication:"Liquide."},
+  {enonce:"Grande circ = ?",options:[{lettre:"A",texte:"cœur→poumons"},{lettre:"B",texte:"cœur→organes"},{lettre:"C",texte:"poumons→cœur"},{lettre:"D",texte:"organes→poumons"}],reponseCorrecte:"B",explication:"→ organes."},
+  {enonce:"Petite circ = ?",options:[{lettre:"A",texte:"cœur→poumons"},{lettre:"B",texte:"cœur→organes"},{lettre:"C",texte:"poumons→organes"},{lettre:"D",texte:"organes→cœur"}],reponseCorrecte:"A",explication:"→ poumons."},
+  {enonce:"Alcool/tabac = ?",options:[{lettre:"A",texte:"bon cœur"},{lettre:"B",texte:"mauvais cœur"},{lettre:"C",texte:"sans effet"},{lettre:"D",texte:"bon poumon"}],reponseCorrecte:"B",explication:"Mauvais."},
+  {enonce:"Sport = ?",options:[{lettre:"A",texte:"paresse"},{lettre:"B",texte:"bonne circulation"},{lettre:"C",texte:"maladie"},{lettre:"D",texte:"sommeil"}],reponseCorrecte:"B",explication:"Bonne circ."},
+  {enonce:"Caillot = ?",options:[{lettre:"A",texte:"liquide"},{lettre:"B",texte:"coagulé"},{lettre:"C",texte:"gazeux"},{lettre:"D",texte:"transparent"}],reponseCorrecte:"B",explication:"Coagulé."},
+  {enonce:"Globules blancs = ?",options:[{lettre:"A",texte:"couleur"},{lettre:"B",texte:"défense"},{lettre:"C",texte:"transport"},{lettre:"D",texte:"chaleur"}],reponseCorrecte:"B",explication:"Défense."},
+  {enonce:"Globules rouges = ?",options:[{lettre:"A",texte:"défense"},{lettre:"B",texte:"couleur rouge"},{lettre:"C",texte:"coagulation"},{lettre:"D",texte:"oxygène"}],reponseCorrecte:"B",explication:"Couleur."},
+  {enonce:"Tabac = ?",options:[{lettre:"A",texte:"bon"},{lettre:"B",texte:"mauvais"},{lettre:"C",texte:"sans effet"},{lettre:"D",texte:"bon poumon"}],reponseCorrecte:"B",explication:"Mauvais."},
+]}
 ];
 const QUIZ_DATA = {
   3: [
@@ -271,7 +387,47 @@ const QUIZ_DATA = {
 {q:"Sel vient ?",opts:["Montagnes","Marais","Rivières","Usines"],ok:1},
 {q:"Soluble = ?",opts:["Pas","Se dissout","Gaz","Solide"],ok:1}
   ],
-};
+
+  16: [
+{q:"Air composé ?",opts:["Oxygène+azote","Eau+sel","Sable","Fer"],ok:0},
+{q:"L'air = ?",opts:["Gaz","Liquide","Solide","Métal"],ok:0},
+{q:"1L air = ?",opts:["0g","1,3g","10g","100g"],ok:1},
+{q:"Vent = ?",opts:["Froid","Air mouv.","Eau","Nuage"],ok:1},
+{q:"Atmosphère = ?",opts:["Eau","Air","Soleil","Lune"],ok:1},
+{q:"Air permet ?",opts:["Manger","Respirer","Dormir","Courir"],ok:1}
+  ],
+  17: [
+{q:"Pression = ?",opts:["Eau","Air","Vent","Sol"],ok:1},
+{q:"Siphon utilise ?",opts:["Chaleur","Pression","Froid","Électricité"],ok:1},
+{q:"Baro mesure ?",opts:["Température","Pression","Vent","Pluie"],ok:1},
+{q:"Baromètres ?",opts:["Eau/air","Mercure/métal","Vent/pluie","Gaz"],ok:1},
+{q:"Pression sens ?",opts:["Haut","Bas","Tous","Côté"],ok:2},
+{q:"Altitude = ?",opts:["Augmente","Diminue","Pareil","Disparaît"],ok:1}
+  ],
+  18: [
+{q:"Dilatation = ?",opts:["Volume-","Volume+","Poids","Couleur"],ok:1},
+{q:"Contraction = ?",opts:["Volume+","Volume-","Chaud","Rien"],ok:1},
+{q:"Thermo = ?",opts:["Pression","Température","Vent","Humidité"],ok:1},
+{q:"Thermo contient ?",opts:["Eau","Alcool/mercure","Sable","Air"],ok:1},
+{q:"Mercure monte = ?",opts:["Froid","Chaud","Humide","Sec"],ok:1},
+{q:"Corps dilatés ?",opts:["Solides","Liquides","Gaz","Tous"],ok:3}
+  ],
+  19: [
+{q:"Digestion dans ?",opts:["Cœur","Tube digestif","Poumons","Cerveau"],ok:1},
+{q:"1er organe ?",opts:["Œsophage","Bouche","Estomac","Intestin"],ok:1},
+{q:"Œsophage = ?",opts:["Bouche","Estomac","Intestin","Cœur"],ok:1},
+{q:"Estomac ?",opts:["Absorbe eau","Brasse","Mâche","Évacue"],ok:1},
+{q:"Nutriments dans ?",opts:["Estomac","Intestin grêle","Gros intestin","Bouche"],ok:1},
+{q:"Parties ?",opts:["3","4","5","6"],ok:2}
+  ],
+  21: [
+{q:"Litres sang ?",opts:["2L","3L","5L","10L"],ok:2},
+{q:"Plasma = ?",opts:["Liquide clair","Gaz","Solide","Cellule"],ok:0},
+{q:"Grande circ = ?",opts:["Cœur→poum.","Cœur→org.","Poum.→cœur","Org.→poum."],ok:1},
+{q:"Petite circ = ?",opts:["Cœur→poum.","Cœur→org.","Poum.→org.","Org.→cœur"],ok:0},
+{q:"Alcool = ?",opts:["Cœur","Os","Cheveux","Peau"],ok:0},
+{q:"Sport = ?",opts:["Paresse","Circulation","Maladie","Sommeil"],ok:1}
+  ],};
 
 // GÉNÉRATEURS HTML POUR QUIZ
 // ─────────────────────────────────────────────────────────────
