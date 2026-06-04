@@ -10,7 +10,7 @@ const Entrainement  = require('../models/Entrainement');
 
 // ============================================================
 // seed-ist-cm1.js
-// Intègre les 14 leçons d'Histoire CM1 dans la plateforme Taté
+// Intègre les 14 leçons d'IST CM1 dans la plateforme Taté
 // Leçons : 3,6,9,10
 //
 // Usage : node src/db/seed-histoire-cm1.js
@@ -119,13 +119,13 @@ const seed = async () => {
   await connectDB();
   console.log('\n✅ Connecté à MongoDB\n');
 
-  // 1. Trouver la matière Histoire
+  // 1. Trouver la matière IST
   const matiere = await Matiere.findOne({ code: 'IST' });
   if (!matiere) {
     console.error('❌ Matière IST (code: IST) introuvable. Lance d\'abord node src/db/seed.js');
     process.exit(1);
   }
-  console.log(`✅ Matière Histoire trouvée : ${matiere._id}`);
+  console.log(`✅ Matière IST trouvée : ${matiere._id}`);
 
   // 2. Trouver l'admin
   const admin = await User.findOne({ role: 'admin' });
@@ -206,12 +206,12 @@ const seed = async () => {
     console.log(`   ✅ QCM publié : ${qcm._id} (${data.qcm.length} questions)`);
 
     // ── 8. Supprimer les anciens quiz de ce chapitre ─────────────
-    await Entrainement.deleteMany({ matiere: 'Histoire', niveau: 'CM1', chapitre: data.titre });
+    await Entrainement.deleteMany({ matiere: 'IST', niveau: 'CM1', chapitre: data.titre });
 
     // ── 9. Créer le Quiz (Entrainement) ──────────────────────────
     const quizQuestions = QUIZ_DATA[data.ordre];
     const entrainement = await Entrainement.create({
-      matiere:        'Histoire',
+      matiere:        'IST',
       niveau:         'CM1',
       section:        '',
       chapitre:       data.titre,
@@ -230,20 +230,20 @@ const seed = async () => {
 
   // ── Résumé final ─────────────────────────────────────────────
   console.log('🎓 ══════════════════════════════════════════════');
-  console.log('   Seed Histoire CM1 terminé avec succès !');
+  console.log('   Seed IST CM1 terminé avec succès !');
   console.log(`   📚 Chapitres créés/mis à jour : ${nbChapitres}`);
   console.log(`   📖 Leçons publiées            : ${nbLecons}`);
   console.log(`   ✏️  QCMs publiés              : ${nbQcms}`);
   console.log(`   ⚡ Quiz publiés               : ${nbQuiz}`);
   console.log('   → Les élèves CM1 peuvent maintenant');
-  console.log('     accéder aux cours, QCMs et Quiz d\'Histoire !');
+  console.log('     accéder aux cours, QCMs et Quiz d\'IST !');
   console.log('══════════════════════════════════════════════\n');
 
   process.exit(0);
 };
 
 seed().catch(e => {
-  console.error('❌ Erreur seed Histoire CM1 :', e.message);
+  console.error('❌ Erreur seed IST CM1 :', e.message);
   console.error(e.stack);
   process.exit(1);
 });
