@@ -4,7 +4,7 @@
 const mongoose = require('mongoose');
 const bcrypt   = require('bcryptjs');
 
-const NIVEAUX = ['CM1','CM2','6eme','5eme','4eme','3eme','Seconde','Premiere','Terminale'];
+const NIVEAUX = ['CM1','CM2','6eme','5eme','4eme','3eme','Seconde','Premiere','Terminale','Adulte'];
 
 const userSchema = new mongoose.Schema({
   nom:          { type: String, required: true, trim: true },
