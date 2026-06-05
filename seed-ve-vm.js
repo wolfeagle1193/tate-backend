@@ -1,0 +1,118 @@
+const mongoose = require('mongoose');
+const MONGODB_URI = 'mongodb+srv://tate_school:UCY0NJMuUIoGpSDU@cluster0.ywgxfxk.mongodb.net/tate?retryWrites=true&w=majority&appName=Cluster0';
+const adminId = '69dfac0adb8037a014ca9178';
+const veMatiereId = '6a22e92878212a45c34541b7';
+const vmMatiereId = '6a22e92878212a45c34541b8';
+
+const lecons = [];
+
+function addVE(idx, titre, html) {
+  lecons.push({ matiereId: veMatiereId, chapitreIdx: idx, titre, html });
+}
+function addVM(idx, titre, html) {
+  lecons.push({ matiereId: vmMatiereId, chapitreIdx: idx, titre, html });
+}
+
+// ======================== VIVRE ENSEMBLE ========================
+
+addVE(0, 'La vie en famille', `<h1>🏠 Leçon 1 : La vie en famille</h1>
+<div class="intro"><p>La <strong>famille</strong> est le premier groupe dans lequel on vit. Chaque membre a des rôles et des responsabilités pour que tout le monde vive bien ensemble.</p></div>
+<div class="bloc-essentiel"><h2>📌 À RETENIR</h2><table><tr><th>Membre</th><th>Rôle</th></tr><tr><td>👨 Père</td><td>Protège, travaille, éduque</td></tr><tr><td>👩 Mère</td><td>S'occupe du foyer, éduque, travaille</td></tr><tr><td>👦👧 Enfants</td><td>Étudient, aident à la maison</td></tr><tr><td>👴👵 Grands-parents</td><td>Conseillent, transmettent la tradition</td></tr></table></div>
+<div class="detail"><p>Dans une famille, chacun doit <strong>participer</strong> : ranger sa chambre, faire la vaisselle, aider les plus jeunes. L'<strong>entraide</strong> rend la vie plus agréable.</p></div>
+<h2>✏️ QCM</h2>
+<p style="font-size:0.9rem;color:#92400e">Choisis la bonne réponse.</p>
+<div class="question"><p><strong>1. La famille est...</strong></p><label><input type="radio" name="q1" value="A"> A. Un groupe de personnes</label><label><input type="radio" name="q1" value="B" data-correct="true"> B. Des personnes unies par le sang ou l'amour</label><label><input type="radio" name="q1" value="C"> C. Seulement les parents</label><label><input type="radio" name="q1" value="D"> D. Les voisins</label></div>
+<div class="question"><p><strong>2. Que doivent faire les enfants ?</strong></p><label><input type="radio" name="q2" value="A"> A. Rien</label><label><input type="radio" name="q2" value="B" data-correct="true"> B. Étudier et aider</label><label><input type="radio" name="q2" value="C"> C. Jouer seulement</label><label><input type="radio" name="q2" value="D"> D. Commander</label></div>
+<div class="question"><p><strong>3. L'entraide c'est...</strong></p><label><input type="radio" name="q3" value="A" data-correct="true"> A. S'aider les uns les autres</label><label><input type="radio" name="q3" value="B"> B. Se disputer</label><label><input type="radio" name="q3" value="C"> C. Ignorer les autres</label><label><input type="radio" name="q3" value="D"> D. Faire tout seul</label></div>
+<div class="question"><p><strong>4. Le respect c'est...</strong></p><label><input type="radio" name="q4" value="A"> A. Crier fort</label><label><input type="radio" name="q4" value="B" data-correct="true"> B. S'écouter poliment</label><label><input type="radio" name="q4" value="C"> C. Se taire toujours</label><label><input type="radio" name="q4" value="D"> D. Faire ce qu'on veut</label></div>
+<div class="question"><p><strong>5. Les décisions importantes se prennent...</strong></p><label><input type="radio" name="q5" value="A"> A. Par le père seul</label><label><input type="radio" name="q5" value="B"> B. Par la mère seule</label><label><input type="radio" name="q5" value="C" data-correct="true"> C. En famille ensemble</label><label><input type="radio" name="q5" value="D"> D. Par personne</label></div>`);
+
+addVE(1, "La vie à l'école", `<h1>🏫 Leçon 2 : La vie à l'école</h1>
+<div class="intro"><p>L'<strong>école</strong> est un lieu où l'on apprend et on grandit ensemble. Le respect des règles est essentiel.</p></div>
+<div class="bloc-essentiel"><h2>📌 À RETENIR</h2><table><tr><th>Règle</th><th>Pourquoi ?</th></tr><tr><td>Arriver à l'heure</td><td>Ne pas perturber la classe</td></tr><tr><td>Écouter le maître</td><td>Pour comprendre</td></tr><tr><td>Lever la main</td><td>Respecter la parole des autres</td></tr><tr><td>Ne pas se battre</td><td>Vivre en paix</td></tr><tr><td>Faire ses devoirs</td><td>Pour progresser</td></tr></table></div>
+<div class="detail"><p>À l'école, on apprend aussi à <strong>vivre avec les autres</strong>, à partager, à attendre son tour. Chaque élève doit être respecté.</p></div>
+<h2>✏️ QCM</h2>
+<p style="font-size:0.9rem;color:#92400e">Choisis la bonne réponse.</p>
+<div class="question"><p><strong>1. Pourquoi arriver à l'heure ?</strong></p><label><input type="radio" name="q1" value="A" data-correct="true"> A. Ne pas perturber la classe</label><label><input type="radio" name="q1" value="B"> B. Pour jouer plus</label><label><input type="radio" name="q1" value="C"> C. Pour manger</label><label><input type="radio" name="q1" value="D"> D. Pas important</label></div>
+<div class="question"><p><strong>2. Avant de parler, on...</strong></p><label><input type="radio" name="q2" value="A"> A. Crie</label><label><input type="radio" name="q2" value="B" data-correct="true"> B. Lève la main</label><label><input type="radio" name="q2" value="C"> C. Se lève</label><label><input type="radio" name="q2" value="D"> D. Attend la récré</label></div>
+<div class="question"><p><strong>3. L'école permet...</strong></p><label><input type="radio" name="q3" value="A" data-correct="true"> A. D'apprendre et de se faire des amis</label><label><input type="radio" name="q3" value="B"> B. De jouer seulement</label><label><input type="radio" name="q3" value="C"> C. De dormir</label><label><input type="radio" name="q3" value="D"> D. De manger</label></div>
+<div class="question"><p><strong>4. Si on ne comprend pas...</strong></p><label><input type="radio" name="q4" value="A"> A. On se tait</label><label><input type="radio" name="q4" value="B" data-correct="true"> B. On demande au maître</label><label><input type="radio" name="q4" value="C"> C. On copie</label><label><input type="radio" name="q4" value="D"> D. On pleure</label></div>
+<div class="question"><p><strong>5. Pour la paix à l'école...</strong></p><label><input type="radio" name="q5" value="A"> A. On se bat</label><label><input type="radio" name="q5" value="B" data-correct="true"> B. On respecte les autres</label><label><input type="radio" name="q5" value="C"> C. On ignore les autres</label><label><input type="radio" name="q5" value="D"> D. On vole</label></div>`);
+
+addVE(2, 'La vie dans le quartier', `<h1>🏘️ Leçon 3 : La vie dans le quartier</h1>
+<div class="intro"><p>Le <strong>quartier</strong> est notre espace de vie. Y vivre bien demande solidarité et respect.</p></div>
+<div class="bloc-essentiel"><h2>📌 À RETENIR</h2><table><tr><th>À faire</th><th>À éviter</th></tr><tr><td>Saluer ses voisins</td><td>Faire trop de bruit</td></tr><tr><td>Participer au nettoyage</td><td>Jeter les ordures par terre</td></tr><tr><td>Aider les personnes âgées</td><td>Se disputer</td></tr></table></div>
+<div class="detail"><p>Dans le quartier, on vit avec tous les âges. Être un bon voisin, c'est être <strong>solidaire</strong>.</p></div>
+<h2>✏️ QCM</h2>
+<p style="font-size:0.9rem;color:#92400e">Choisis la bonne réponse.</p>
+<div class="question"><p><strong>1. Dans le quartier on trouve...</strong></p><label><input type="radio" name="q1" value="A"> A. Que des maisons</label><label><input type="radio" name="q1" value="B" data-correct="true"> B. Des maisons, commerces, voisins</label><label><input type="radio" name="q1" value="C"> C. Que des magasins</label><label><input type="radio" name="q1" value="D"> D. Rien</label></div>
+<div class="question"><p><strong>2. Quand on croise un voisin...</strong></p><label><input type="radio" name="q2" value="A" data-correct="true"> A. On le salue</label><label><input type="radio" name="q2" value="B"> B. On l'ignore</label><label><input type="radio" name="q2" value="C"> C. On lui crie dessus</label><label><input type="radio" name="q2" value="D"> D. On se cache</label></div>
+<div class="question"><p><strong>3. La solidarité c'est...</strong></p><label><input type="radio" name="q3" value="A" data-correct="true"> A. S'entraider</label><label><input type="radio" name="q3" value="B"> B. Se bagarrer</label><label><input type="radio" name="q3" value="C"> C. Rester chez soi</label><label><input type="radio" name="q3" value="D"> D. Ne parler à personne</label></div>
+<div class="question"><p><strong>4. Pour un quartier propre...</strong></p><label><input type="radio" name="q4" value="A"> A. Jeter par terre</label><label><input type="radio" name="q4" value="B" data-correct="true"> B. Participer au nettoyage</label><label><input type="radio" name="q4" value="C"> C. Laisser les ordures</label><label><input type="radio" name="q4" value="D"> D. Brûler les déchets</label></div>
+<div class="question"><p><strong>5. Une personne âgée...</strong></p><label><input type="radio" name="q5" value="A"> A. On l'ignore</label><label><input type="radio" name="q5" value="B" data-correct="true"> B. On l'aide et on la respecte</label><label><input type="radio" name="q5" value="C"> C. On se moque d'elle</label><label><input type="radio" name="q5" value="D"> D. On lui prend ses affaires</label></div>`);
+
+addVE(3, 'Les règles de politesse', `<h1>🙏 Leçon 4 : Les règles de politesse</h1>
+<div class="intro"><p>La <strong>politesse</strong> est un ensemble de bonnes manières pour bien vivre avec les autres.</p></div>
+<div class="bloc-essentiel"><h2>📌 À RETENIR</h2><table><tr><th>Situation</th><th>Que dire</th></tr><tr><td>Rencontrer</td><td>"Bonjour", "Bonjour"</td></tr><tr><td>Recevoir</td><td>"Merci"</td></tr><tr><td>Erreur</td><td>"Pardon", "Excusez-moi"</td></tr><tr><td>Demander</td><td>"S'il vous plaît"</td></tr><tr><td>Quitter</td><td>"Au revoir"</td></tr></table></div>
+<div class="detail"><p>Au Sénégal, la politesse est très importante. On salue toujours avant de parler. Les enfants saluent les adultes en premier.</p></div>
+<h2>✏️ QCM</h2>
+<p style="font-size:0.9rem;color:#92400e">Choisis la bonne réponse.</p>
+<div class="question"><p><strong>1. Quand on rencontre quelqu'un...</strong></p><label><input type="radio" name="q1" value="A" data-correct="true"> A. On dit bonjour</label><label><input type="radio" name="q1" value="B"> B. On dit au revoir</label><label><input type="radio" name="q1" value="C"> C. On ne dit rien</label><label><input type="radio" name="q1" value="D"> D. On crie</label></div>
+<div class="question"><p><strong>2. Quand on reçoit un cadeau...</strong></p><label><input type="radio" name="q2" value="A" data-correct="true"> A. On dit merci</label><label><input type="radio" name="q2" value="B"> B. On dit au revoir</label><label><input type="radio" name="q2" value="C"> C. On dit bonjour</label><label><input type="radio" name="q2" value="D"> D. On dit pardon</label></div>
+<div class="question"><p><strong>3. Pour demander poliment...</strong></p><label><input type="radio" name="q3" value="A" data-correct="true"> A. S'il vous plaît</label><label><input type="radio" name="q3" value="B"> B. Donne-moi ça</label><label><input type="radio" name="q3" value="C"> C. Vite !</label><label><input type="radio" name="q3" value="D"> D. C'est à moi</label></div>
+<div class="question"><p><strong>4. En quittant quelqu'un...</strong></p><label><input type="radio" name="q4" value="A"> A. Bonjour</label><label><input type="radio" name="q4" value="B" data-correct="true"> B. Au revoir</label><label><input type="radio" name="q4" value="C"> C. Merci</label><label><input type="radio" name="q4" value="D"> D. Pardon</label></div>
+<div class="question"><p><strong>5. Au Sénégal, la politesse...</strong></p><label><input type="radio" name="q5" value="A"> A. Est optionnelle</label><label><input type="radio" name="q5" value="B" data-correct="true"> B. Est très importante</label><label><input type="radio" name="q5" value="C"> C. Est inutile</label><label><input type="radio" name="q5" value="D"> D. Pour adultes seulement</label></div>`);
+
+addVE(4, "L'hygiène et la santé", `<h1>🧼 Leçon 5 : L'hygiène et la santé</h1>
+<div class="intro"><p>L'<strong>hygiène</strong> permet de rester en bonne santé et d'éviter les maladies.</p></div>
+<div class="bloc-essentiel"><h2>📌 À RETENIR</h2><table><tr><th>Moment</th><th>Gestes</th></tr><tr><td>Au réveil</td><td>Se laver le visage, brosser les dents</td></tr><tr><td>Avant de manger</td><td>Se laver les mains</td></tr><tr><td>Après toilettes</td><td>Se laver les mains</td></tr><tr><td>Le soir</td><td>Se doucher, brosser les dents</td></tr></table></div>
+<div class="detail"><p>Les maladies se transmettent par les mains sales ou l'eau sale. <strong>Boire de l'eau propre</strong> est essentiel.</p></div>
+<h2>✏️ QCM</h2>
+<p style="font-size:0.9rem;color:#92400e">Choisis la bonne réponse.</p>
+<div class="question"><p><strong>1. Avant de manger...</strong></p><label><input type="radio" name="q1" value="A" data-correct="true"> A. Laver ses mains</label><label><input type="radio" name="q1" value="B"> B. Se coucher</label><label><input type="radio" name="q1" value="C"> C. Jouer</label><label><input type="radio" name="q1" value="D"> D. Aller à l'école</label></div>
+<div class="question"><p><strong>2. Les dents se brossent...</strong></p><label><input type="radio" name="q2" value="A"> A. 1 fois/semaine</label><label><input type="radio" name="q2" value="B" data-correct="true"> B. Matin et soir</label><label><input type="radio" name="q2" value="C"> C. Jamais</label><label><input type="radio" name="q2" value="D"> D. 1 fois/mois</label></div>
+<div class="question"><p><strong>3. On se lave les mains avec...</strong></p><label><input type="radio" name="q3" value="A" data-correct="true"> A. Savon et eau</label><label><input type="radio" name="q3" value="B"> B. Terre</label><label><input type="radio" name="q3" value="C"> C. Sable</label><label><input type="radio" name="q3" value="D"> D. Rien</label></div>
+<div class="question"><p><strong>4. L'eau qu'on boit doit être...</strong></p><label><input type="radio" name="q4" value="A"> A. Sale</label><label><input type="radio" name="q4" value="B" data-correct="true"> B. Propre</label><label><input type="radio" name="q4" value="C"> C. Chaude</label><label><input type="radio" name="q4" value="D"> D. De rivière</label></div>
+<div class="question"><p><strong>5. Se laver les mains évite...</strong></p><label><input type="radio" name="q5" value="A" data-correct="true"> A. Les maladies</label><label><input type="radio" name="q5" value="B"> B. D'avoir chaud</label><label><input type="radio" name="q5" value="C"> C. De grandir</label><label><input type="radio" name="q5" value="D"> D. De dormir</label></div>`);
+
+addVE(5, 'La sécurité à la maison et dehors', `<h1>⚠️ Leçon 6 : La sécurité</h1>
+<div class="intro"><p>Partout il y a des dangers. <mark>Connaître les règles de sécurité</mark> évite les accidents.</p></div>
+<div class="bloc-essentiel"><h2>📌 À RETENIR</h2><table><tr><th>Lieu</th><th>Règle</th></tr><tr><td>Maison</td><td>Ne pas toucher prises, couteaux</td></tr><tr><td>Cuisine</td><td>Ne pas jouer avec le feu</td></tr><tr><td>Route</td><td>Regarder avant de traverser</td></tr><tr><td>Eau</td><td>Ne pas se baigner seul</td></tr></table><p><strong>Urgences :</strong> Pompiers 18, Police 17, SAMU 15</p></div>
+<h2>✏️ QCM</h2>
+<p style="font-size:0.9rem;color:#92400e">Choisis la bonne réponse.</p>
+<div class="question"><p><strong>1. Avant de traverser...</strong></p><label><input type="radio" name="q1" value="A" data-correct="true"> A. Regarder des deux côtés</label><label><input type="radio" name="q1" value="B"> B. Fermer les yeux</label><label><input type="radio" name="q1" value="C"> C. Courir vite</label><label><input type="radio" name="q1" value="D"> D. Ne rien regarder</label></div>
+<div class="question"><p><strong>2. En cas d'incendie...</strong></p><label><input type="radio" name="q2" value="A" data-correct="true"> A. Pompiers (18)</label><label><input type="radio" name="q2" value="B"> B. Ses parents</label><label><input type="radio" name="q2" value="C"> C. Son ami</label><label><input type="radio" name="q2" value="D"> D. Le facteur</label></div>
+<div class="question"><p><strong>3. Dans la cuisine...</strong></p><label><input type="radio" name="q3" value="A" data-correct="true"> A. Pas jouer avec le feu</label><label><input type="radio" name="q3" value="B"> B. Manger</label><label><input type="radio" name="q3" value="C"> C. Boire</label><label><input type="radio" name="q3" value="D"> D. Parler</label></div>
+<div class="question"><p><strong>4. Police =</strong></p><label><input type="radio" name="q4" value="A"> A. 18</label><label><input type="radio" name="q4" value="B"> B. 15</label><label><input type="radio" name="q4" value="C" data-correct="true"> C. 17</label><label><input type="radio" name="q4" value="D"> D. 112</label></div>
+<div class="question"><p><strong>5. Se baigner seul =</strong></p><label><input type="radio" name="q5" value="A"> A. OK</label><label><input type="radio" name="q5" value="B" data-correct="true"> B. Dangereux</label><label><input type="radio" name="q5" value="C"> C. La nuit</label><label><input type="radio" name="q5" value="D"> D. Sans adulte</label></div>`);
+
+addVE(6, "Le respect de l'environnement", `<h1>🌿 Leçon 7 : Le respect de l'environnement</h1>
+<div class="intro"><p>L'<strong>environnement</strong> est notre maison à tous. Protéger la nature est notre devoir.</p></div>
+<div class="bloc-essentiel"><h2>📌 À RETENIR</h2><table><tr><th>Bon geste</th><th>Mauvais geste</th></tr><tr><td>✅ Jeter à la poubelle</td><td>❌ Jeter par terre</td></tr><tr><td>✅ Planter des arbres</td><td>❌ Couper sans raison</td></tr><tr><td>✅ Économiser l'eau</td><td>❌ Laisser couler</td></tr></table></div>
+<div class="detail"><p>Les arbres produisent l'<strong>oxygène</strong> qu'on respire. <strong>Planter un arbre</strong> est un geste simple mais important.</p></div>
+<h2>✏️ QCM</h2>
+<p style="font-size:0.9rem;color:#92400e">Choisis la bonne réponse.</p>
+<div class="question"><p><strong>1. Les déchets vont...</strong></p><label><input type="radio" name="q1" value="A" data-correct="true"> A. À la poubelle</label><label><input type="radio" name="q1" value="B"> B. Par terre</label><label><input type="radio" name="q1" value="C"> C. Brûlés</label><label><input type="radio" name="q1" value="D"> D. Dans la rue</label></div>
+<div class="question"><p><strong>2. Les arbres produisent...</strong></p><label><input type="radio" name="q2" value="A" data-correct="true"> A. De l'oxygène</label><label><input type="radio" name="q2" value="B"> B. Du bruit</label><label><input type="radio" name="q2" value="C"> C. Rien</label><label><input type="radio" name="q2" value="D"> D. De l'eau</label></div>
+<div class="question"><p><strong>3. Pour aider la nature...</strong></p><label><input type="radio" name="q3" value="A" data-correct="true"> A. Planter un arbre</label><label><input type="radio" name="q3" value="B"> B. Couper les arbres</label><label><input type="radio" name="q3" value="C"> C. Jeter des plastiques</label><label><input type="radio" name="q3" value="D"> D. Gaspiller l'eau</label></div>
+<div class="question"><p><strong>4. Pour économiser l'eau...</strong></p><label><input type="radio" name="q4" value="A" data-correct="true"> A. Fermer le robinet</label><label><input type="radio" name="q4" value="B"> B. Laisser couler</label><label><input type="radio" name="q4" value="C"> C. Ouvrir tous les robinets</label><label><input type="radio" name="q4" value="D"> D. Jouer avec l'eau</label></div>
+<div class="question"><p><strong>5. Brûler du plastique...</strong></p><label><input type="radio" name="q5" value="A" data-correct="true"> A. Est nocif</label><label><input type="radio" name="q5" value="B"> B. Est bon</label><label><input type="radio" name="q5" value="C"> C. Sans danger</label><label><input type="radio" name="q5" value="D"> D. Meilleure solution</label></div>`);
+
+addVE(7, 'La tolérance et l\'amitié', `<h1>🤝 Leçon 8 : Tolérance et amitié</h1>
+<div class="intro"><p>L'<strong>amitié</strong> et la <strong>tolérance</strong> sont des valeurs essentielles pour bien vivre ensemble.</p></div>
+<div class="bloc-essentiel"><h2>📌 À RETENIR</h2><table><tr><th>Qualité</th><th>Explication</th></tr><tr><td>Amabilité</td><td>Être gentil avec les autres</td></tr><tr><td>Partage</td><td>Donner et recevoir</td></tr><tr><td>Tolérance</td><td>Accepter les différences</td></tr><tr><td>Fidélité</td><td>Rester ami même dans les difficultés</td></tr></table></div>
+<div class="detail"><p>Un véritable ami est quelqu'un sur qui on peut compter. On ne se moque pas de quelqu'un parce qu'il est différent. La <strong>tolérance</strong> rend le monde plus beau.</p></div>
+<h2>✏️ QCM</h2>
+<p style="font-size:0.9rem;color:#92400e">Choisis la bonne réponse.</p>
+<div class="question"><p><strong>1. Un véritable ami...</strong></p><label><input type="radio" name="q1" value="A" data-correct="true"> A. Est loyal et gentil</label><label><input type="radio" name="q1" value="B"> B. Se moque de toi</label><label><input type="radio" name="q1" value="C"> C. Te vole</label><label><input type="radio" name="q1" value="D"> D. T'ignore</label></div>
+<div class="question"><p><strong>2. Être tolérant c'est...</strong></p><label><input type="radio" name="q2" value="A" data-correct="true"> A. Accepter les différences</label><label><input type="radio" name="q2" value="B"> B. Rejeter les autres</label><label><input type="radio" name="q2" value="C"> C. Se moquer</label><label><input type="radio" name="q2" value="D"> D. Ignorer</label></div>
+<div class="question"><p><strong>3. L'amitié se construit sur...</strong></p><label><input type="radio" name="q3" value="A" data-correct="true"> A. La confiance et le respect</label><label><input type="radio" name="q3" value="B"> B. Les mensonges</label><label><input type="radio" name="q3" value="C"> C. Les disputes</label><label><input type="radio" name="q3" value="D"> D. La violence</label></div>
+<div class="question"><p><strong>4. Quand un ami est triste...</strong></p><label><input type="radio" name="q4" value="A" data-correct="true"> A. On le console</label><label><input type="radio" name="q4" value="B"> B. On se moque</label><label><input type="radio" name="q4" value="C"> C. On l'ignore</label><label><input type="radio" name="q4" value="D"> D. On s'en va</label></div>
+<div class="question"><p><strong>5. La tolérance permet...</strong></p><label><input type="radio" name="q5" value="A" data-correct="true"> A. De vivre en paix</label><label><input type="radio" name="q5" value="B"> B. De se battre</label><label><input type="radio" name="q5" value="C"> C. De se fâcher</label><label><input type="radio" name="q5" value="D"> D. De s'isoler</label></div>`);
+
+
+// ======================== VIVRE DANS SON MILIEU ========================
+
+addVM(0, 'Le village et la ville', `<h1>🏘️ Leçon 1 : Le village et la ville</h1>
+<div class="intro"><p>Il existe différents types d'habitats : le <strong>village</strong> et la <strong>ville</strong>. Chacun a ses caractéristiques.</p></div>
+<div class="bloc-essentiel"><h2>📌 À RETENIR</h2><table><tr><th>Village</th><th>Ville</th></tr><tr><td>Peu d'habitants</td><td>Beaucoup d'habitants</td></tr><tr><td>Maisons basses, champs</td><td>Immeubles, grands bâtiments</td></tr><tr><td>Agriculture, élevage</td><td>Commerces, bureaux, usines</td></tr><tr><td>Calme, air pur</td><td>Bruit, circulation</td
