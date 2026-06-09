@@ -523,9 +523,6 @@ async function main() {
     ordreStart++
   );
 
-  console.log("\n✅=== LISTENING AVEC VIDÉOS YOUTUBE CRÉÉS ===");
-  await mongoose.disconnect();
-}
 
   await addChapitre(
     "LI7 — Listening : Séries de Conversations (Oxford English)",
@@ -604,4 +601,9 @@ async function main() {
     ordreStart++
   );
 
+  console.log("\n✅=== LISTENING AVEC VIDÉOS YOUTUBE CRÉÉS ===");
+  await mongoose.disconnect();
+}
+
 main().catch(e => { console.error(e); process.exit(1); });
+
