@@ -492,7 +492,7 @@ const seed = async () => {
     console.error('❌ Matière IST (code: IST) introuvable. Lance d\'abord node src/db/seed.js');
     process.exit(1);
   }
-  console.log(`✅ Matière IST trouvée : ${matiere._id}`) : ${matiere._id}`);
+  console.log(`✅ Matière IST trouvée : ${matiere._id}`);
 
   // 2. Trouver l'admin
   const admin = await User.findOne({ role: 'admin' });
