@@ -13,6 +13,7 @@ const userSchema = new mongoose.Schema({
   passwordHash: { type: String, required: true },
   role:         { type: String, enum: ['admin','prof','eleve','parent'], required: true },
   niveau:       { type: String, enum: NIVEAUX, default: null },
+  formation:    { type: String, enum: ['langue','excel','bureautique', null], default: null, trim: true },
   classeId:     { type: mongoose.Schema.Types.ObjectId, ref: 'Classe', default: null },
 
   // ── Relations famille ──────────────────────────────────────
